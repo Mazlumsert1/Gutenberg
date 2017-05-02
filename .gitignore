@@ -1,12 +1,68 @@
-*.class
+# Maven
+target/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Binaries
+*~
+*.7z
+*.dmg
+*.gz
+*.iso
 *.jar
+*.rar
+*.tar
+*.zip
 *.war
 *.ear
+*.sar
+*.log
+*.class
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# VM Crash Logs
 hs_err_pid*
+
+# NPM
+node_modules/
+npm-debug.log
+debug.log
+
+# NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+build.xml
+
+# IntelliJ 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# Visual studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mac OSX
+.DS_Store
+Thumbs.db
+
+# Misc
+*.swp
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag
