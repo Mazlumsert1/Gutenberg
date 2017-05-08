@@ -7,7 +7,7 @@ public class Book {
     private String title;
     private List<Author> authors;
     private List<Location> locations;
-    private String Text;
+    private String text;
 
     /**
      * Empty Constructor
@@ -26,7 +26,7 @@ public class Book {
         this.title = title;
         this.authors = authors;
         this.locations = locations;
-        Text = text;
+        this.text = text;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Book {
         this.title = title;
         this.authors = authors;
         this.locations = locations;
-        Text = text;
+        this.text = text;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Book {
      * @return String The Url for the text of the Book.
      */
     public String getText() {
-        return Text;
+        return text;
     }
 
     /**
@@ -114,6 +114,6 @@ public class Book {
      * @param text String the Url for the text of the Book.
      */
     public void setText(String text) {
-        Text = text;
+        this.text = text;
     }
 }
