@@ -21,7 +21,7 @@ public class Author {
 
     /**
      * Constructor that instantiates the Author with an UID and a name.
-     * @param UID Long The UID of the Author
+     * @param UID Long The UID of the Author.
      * @param name String The name of the Author.
      */
     public Author(long UID, String name) {

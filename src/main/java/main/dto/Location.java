@@ -13,7 +13,7 @@ public class Location {
     }
 
     /**
-     * Constructor that instantiates a location with latitude, longitude and name
+     * Constructor that instantiates a location with latitude, longitude and name.
      * @param latitude Double The latitude of the Location.
      * @param longitude Double The longitude of the Location.
      * @param name String The name of the Location.

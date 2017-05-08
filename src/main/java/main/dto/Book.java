@@ -10,7 +10,7 @@ public class Book {
     private String text;
 
     /**
-     * Empty Constructor
+     * Empty Constructor.
      */
     public Book() {
     }
