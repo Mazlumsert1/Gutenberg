@@ -6,13 +6,14 @@ public class Author {
     private String name;
 
     /**
-     * Empty constructor.
+     * Default constructor.
      */
     public Author() {
     }
 
     /**
      * Constructor that instantiates the Author with a name.
+     *
      * @param name String The name of the Author.
      */
     public Author(String name) {
@@ -21,6 +22,7 @@ public class Author {
 
     /**
      * Constructor that instantiates the Author with an UID and a name.
+     *
      * @param UID Long The UID of the Author.
      * @param name String The name of the Author.
      */
@@ -31,6 +33,7 @@ public class Author {
 
     /**
      * Get the UID of the Author.
+     *
      * @return Long The UID of the Author.
      */
     public long getUID() {
@@ -39,6 +42,7 @@ public class Author {
 
     /**
      * Gets the name of the Author.
+     *
      * @return String The name of the Author.
      */
     public String getName() {
@@ -47,6 +51,7 @@ public class Author {
 
     /**
      * Sets the name of the Author.
+     *
      * @param name String The name of the Author.
      */
     public void setName(String name) {

@@ -7,13 +7,14 @@ public class Location {
     private String name;
 
     /**
-     * Empty Constructor.
+     * Default constructor.
      */
     public Location() {
     }
 
     /**
      * Constructor that instantiates a location with latitude, longitude and name.
+     *
      * @param latitude Double The latitude of the Location.
      * @param longitude Double The longitude of the Location.
      * @param name String The name of the Location.
@@ -26,6 +27,7 @@ public class Location {
 
     /**
      * Get the latitude of the Location.
+     *
      * @return Double The latitude of the Location.
      */
     public double getLatitude() {
@@ -34,6 +36,7 @@ public class Location {
 
     /**
      * Set the latitude of the Location.
+     *
      * @param latitude Double The latitude of the Location.
      */
     public void setLatitude(double latitude) {
@@ -42,6 +45,7 @@ public class Location {
 
     /**
      * Get the longitude of the Location.
+     *
      * @return Double The longitude of the Location.
      */
     public double getLongitude() {
@@ -50,6 +54,7 @@ public class Location {
 
     /**
      * Set the latitude of the Location.
+     *
      * @param longitude Double The longitude of the Location.
      */
     public void setLongitude(double longitude) {
@@ -58,6 +63,7 @@ public class Location {
 
     /**
      * Get the name of the Location.
+     *
      * @return String the name of the Location.
      */
     public String getName() {
@@ -66,6 +72,7 @@ public class Location {
 
     /**
      * Set the name of the Location.
+     *
      * @param name String the name of the Location.
      */
     public void setName(String name) {

@@ -10,13 +10,14 @@ public class Book {
     private String text;
 
     /**
-     * Empty Constructor.
+     * Default constructor.
      */
     public Book() {
     }
 
     /**
      * Constructor that initiates the Book with a title, a list of Authors, a list of Locations and text.
+     *
      * @param title String The title of the Book.
      * @param authors List of Authors The Authors of the Book.
      * @param locations List of Locations The Locations of the Book.
@@ -31,6 +32,7 @@ public class Book {
 
     /**
      * Constructor that initates the Book with an UID, a title, a list of Authors, a list of Locations and text.
+     *
      * @param UID Long The UID of the Book.
      * @param title String The title of the Book.
      * @param authors List of Authors The Authors of the Book.
@@ -47,6 +49,7 @@ public class Book {
 
     /**
      * Gets the UID of the Book.
+     *
      * @return long The UID of the Book.
      */
     public long getUID() {
@@ -55,6 +58,7 @@ public class Book {
 
     /**
      * Gets the Title of the Book.
+     *
      * @return String The title of the Book.
      */
     public String getTitle() {
@@ -63,6 +67,7 @@ public class Book {
 
     /**
      * Sets the Title of the Book.
+     *
      * @param title String The title of the Book.
      */
     public void setTitle(String title) {
@@ -71,6 +76,7 @@ public class Book {
 
     /**
      * Gets a List of Authors associated with the Book.
+     *
      * @return List of Authors The Authors associated with the Book.
      */
     public List<Author> getAuthors() {
@@ -79,6 +85,7 @@ public class Book {
 
     /**
      * Sets a List of Authors associated with the Book.
+     *
      * @param authors List of Authors The Authors associated with the Book.
      */
     public void setAuthors(List<Author> authors) {
@@ -87,6 +94,7 @@ public class Book {
 
     /**
      * Gets a List of Locations mentioned in the Book.
+     *
      * @return List of Locations The Locations mentioned in the Book.
      */
     public List<Location> getLocations() {
@@ -95,6 +103,7 @@ public class Book {
 
     /**
      * Sets a List of Locations mentioned in the Book.
+     *
      * @param locations List of Locations The Loactions mentioned in the Book.
      */
     public void setLocations(List<Location> locations) {
@@ -103,6 +112,7 @@ public class Book {
 
     /**
      * Gets the Url for the text of the Book.
+     *
      * @return String The Url for the text of the Book.
      */
     public String getText() {
@@ -111,6 +121,7 @@ public class Book {
 
     /**
      * Sets the Urls for the text of the Book.
+     *
      * @param text String the Url for the text of the Book.
      */
     public void setText(String text) {
