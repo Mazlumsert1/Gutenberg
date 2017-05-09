@@ -26,54 +26,54 @@ public class Location {
     }
 
     /**
-     * Get the latitude of the Location.
+     * Get the latitude of the location.
      *
-     * @return Double The latitude of the Location.
+     * @return Double The latitude of the location.
      */
     public double getLatitude() {
         return latitude;
     }
 
     /**
-     * Set the latitude of the Location.
+     * Set the latitude of the location.
      *
-     * @param latitude Double The latitude of the Location.
+     * @param latitude Double The latitude of the location.
      */
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
     /**
-     * Get the longitude of the Location.
+     * Get the longitude of the location.
      *
-     * @return Double The longitude of the Location.
+     * @return Double The longitude of the location.
      */
     public double getLongitude() {
         return longitude;
     }
 
     /**
-     * Set the latitude of the Location.
+     * Set the latitude of the location.
      *
-     * @param longitude Double The longitude of the Location.
+     * @param longitude Double The longitude of the location.
      */
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
     /**
-     * Get the name of the Location.
+     * Get the name of the location.
      *
-     * @return String the name of the Location.
+     * @return String the name of the location.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Set the name of the Location.
+     * Set the name of the location.
      *
-     * @param name String the name of the Location.
+     * @param name String the name of the location.
      */
     public void setName(String name) {
         this.name = name;
