@@ -1,9 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-gutenberg,main.dao,BookDAO,3,0,0,0,1,0,1,0,1,0
+gutenberg,main.dao,BookDAOMYSQL,14,3,0,0,7,2,5,1,5,1
 gutenberg,main.dto,Author,0,28,0,0,0,13,0,6,0,6
 gutenberg,main.dto,Book,0,67,0,0,0,28,0,12,0,12
 gutenberg,main.dto,Location,0,36,0,0,0,16,0,8,0,8
-gutenberg,main.exception,ConnectionAlreadyClosedException,4,0,0,0,2,0,1,0,1,0
-gutenberg,main.util,DBConnectorMongo,32,34,0,0,4,12,1,2,1,2
-gutenberg,main.util,DBConnectorMySQL,51,39,10,0,12,13,7,2,2,2
-gutenberg,main.facade,BookFacade,3,0,0,0,1,0,1,0,1,0
+gutenberg,main.exception,BookNotFoundException,0,4,0,0,0,2,0,1,0,1
+gutenberg,main.util,DBConnectorMongo,3,0,0,0,1,0,1,0,1,0
+gutenberg,main.util,DBConnectorMySQL,3,0,0,0,1,0,1,0,1,0
+gutenberg,main.facade,BookFacadeMYSQL,0,75,0,8,0,22,0,10,0,6
