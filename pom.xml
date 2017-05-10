@@ -9,6 +9,13 @@
     <version>1.0</version>
 
     <dependencies>
+        <!-- https://docs.mongodb.com/ecosystem/drivers/java/ -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>3.0.4</version>
+            <type>jar</type>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
