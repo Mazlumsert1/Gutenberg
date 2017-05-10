@@ -3,10 +3,76 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.reend</groupId>
     <artifactId>gutenberg</artifactId>
     <version>1.0</version>
+
+    <!--
+    ==============================
+    ++++     PROJECT DATA     ++++
+    ==============================
+    -->
+    
+    <url>https://github.com/ERPedersen/Gutenberg</url>
+    
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/ERPedersen/Gutenberg</url>
+    </ciManagement>
+    
+    <issueManagement>
+        <url>https://github.com/ERPedersen/Gutenberg/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+    
+    <scm>
+        <url>https://github.com/ERPedersen/Gutenberg</url>
+        <connection>scm:git:git://github.com/tjaydk/pages.git</connection>
+    </scm>
+    
+    <!--
+    ==============================
+    ++++      PROPERTIES      ++++
+    ==============================
+    -->
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <github.global.server>github</github.global.server>
+        <github.global.oauth2Token>${env.GITHUB_OAUTH_TOKEN}</github.global.oauth2Token>
+    </properties>
+    
+    <!--
+    ==============================
+    ++++      DEVELOPERS      ++++
+    ==============================
+    -->
+    
+    <developers>
+        <developer>
+            <name>Emil Rosenius Pedersen</name>
+        </developer>
+        <developer>
+            <name>Ebbe Vig Nielsen</name>
+        </developer>
+        <developer>
+            <name>Nikolai Vikkelsø Bonderup</name>
+        </developer>
+        <developer>
+            <name>Rune Vandall Zimsen</name>
+        </developer>
+        <developer>
+            <name>Dennis Michael Rønnebæk</name>
+        </developer>
+    </developers>
+    
+    <!--
+    ==============================
+    ++++     DEPENDENCIES     ++++
+    ==============================
+    -->
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -46,6 +112,12 @@
             <version>1.2.5</version>
         </dependency>
     </dependencies>
+    
+    <!--
+    ==============================
+    ++++      REPORTING       ++++
+    ==============================
+    -->
 
     <reporting>
         <plugins>
@@ -87,14 +159,45 @@
             </plugin>
         </plugins>
     </reporting>
+    
+    <!--
+    ==============================
+    ++++         BUILD        ++++
+    ==============================
+    -->
 
     <build>
         <plugins>
             <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Creating site for ${project.version}</message>
+                    <force>true</force>
+                    <repositoryName>Gutenberg</repositoryName>      <!-- github repo name -->
+                    <repositoryOwner>ERPedersen</repositoryOwner>    <!-- github username -->
+                    <oauth2Token>${env.GITHUB_OAUTH_TOKEN}</oauth2Token>
+                    <server>github</server>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.6</version>
+            </plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.6.201602180812</version>
-
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -102,7 +205,6 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-
                 </executions>
                 <configuration>
                     <excludes>
@@ -114,7 +216,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -144,6 +245,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
