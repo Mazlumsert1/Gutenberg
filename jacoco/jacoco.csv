@@ -3,6 +3,7 @@ gutenberg,main.dao,BookDAO,3,0,0,0,1,0,1,0,1,0
 gutenberg,main.dto,Author,0,28,0,0,0,13,0,6,0,6
 gutenberg,main.dto,Book,0,67,0,0,0,28,0,12,0,12
 gutenberg,main.dto,Location,0,36,0,0,0,16,0,8,0,8
-gutenberg,main.util,DBConnectorMongo,3,0,0,0,1,0,1,0,1,0
-gutenberg,main.util,DBConnectorMySQL,3,0,0,0,1,0,1,0,1,0
+gutenberg,main.exception,ConnectionAlreadyClosedException,4,0,0,0,2,0,1,0,1,0
+gutenberg,main.util,DBConnectorMongo,32,34,0,0,4,12,1,2,1,2
+gutenberg,main.util,DBConnectorMySQL,51,39,10,0,12,13,7,2,2,2
 gutenberg,main.facade,BookFacade,3,0,0,0,1,0,1,0,1,0

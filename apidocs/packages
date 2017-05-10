@@ -1,4 +1,5 @@
 main.dao
 main.dto
+main.exception
 main.facade
 main.util
