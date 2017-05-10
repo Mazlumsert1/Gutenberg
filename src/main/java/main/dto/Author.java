@@ -6,14 +6,15 @@ public class Author {
     private String name;
 
     /**
-     * Empty constructor.
+     * Default constructor.
      */
     public Author() {
     }
 
     /**
-     * Constructor that instantiates the Author with a name.
-     * @param name String The name of the Author.
+     * Constructor that instantiates the author with a name.
+     *
+     * @param name String The name of the author.
      */
     public Author(String name) {
         this.name = name;
@@ -21,8 +22,9 @@ public class Author {
 
     /**
      * Constructor that instantiates the Author with an UID and a name.
-     * @param UID Long The UID of the Author.
-     * @param name String The name of the Author.
+     *
+     * @param UID Long The UID of the author.
+     * @param name String The name of the author.
      */
     public Author(long UID, String name) {
         this.UID = UID;
@@ -30,24 +32,27 @@ public class Author {
     }
 
     /**
-     * Get the UID of the Author.
-     * @return Long The UID of the Author.
+     * Get the UID of the author.
+     *
+     * @return Long The UID of the author.
      */
     public long getUID() {
         return UID;
     }
 
     /**
-     * Gets the name of the Author.
-     * @return String The name of the Author.
+     * Gets the name of the author.
+     *
+     * @return String The name of the author.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the name of the Author.
-     * @param name String The name of the Author.
+     * Sets the name of the author.
+     *
+     * @param name String The name of the author.
      */
     public void setName(String name) {
         this.name = name;
