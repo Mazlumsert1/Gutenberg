@@ -3,13 +3,13 @@
 import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
-import main.util.IDBConnector;
+import main.util.IDBConnectorMySQL;
 
 import java.util.List;
 
 public class BookDAOMYSQL implements IBookDAO {
 
-    private IDBConnector connector;
+    private IDBConnectorMySQL connector;
 
     /**
      * Default constructor.
@@ -21,7 +21,7 @@ public class BookDAOMYSQL implements IBookDAO {
      * Constructor with dependency injection.
      * @param connector Connector The connector to the MYSQL database.
      */
-<span class="nc" id="L24">    public BookDAOMYSQL(IDBConnector connector) {</span>
+<span class="nc" id="L24">    public BookDAOMYSQL(IDBConnectorMySQL connector) {</span>
 <span class="nc" id="L25">        this.connector = connector;</span>
 <span class="nc" id="L26">    }</span>
 

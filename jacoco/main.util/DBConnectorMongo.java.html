@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DBConnectorMongo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gutenberg</a> &gt; <a href="index.source.html" class="el_package">main.util</a> &gt; <span class="el_source">DBConnectorMongo.java</span></div><h1>DBConnectorMongo.java</h1><pre class="source lang-java linenums">package main.util;
 
-<span class="nc" id="L3">public class DBConnectorMongo implements IDBConnector {</span>
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoDatabase;
+
+import java.util.Arrays;
+
+public class DBConnectorMongo implements IDBConnectorMongo {
+
+    private String uri;
+    private String user;
+    private String password;
+    private String database;
+    private MongoDatabase connection;
+
+    /**
+     * Default constructor.
+     */
+<span class="fc" id="L22">    public DBConnectorMongo() {</span>
+<span class="fc" id="L23">        this.uri = System.getenv(&quot;MONGO_URI&quot;);</span>
+<span class="fc" id="L24">        this.user = System.getenv(&quot;MONGO_USER&quot;);</span>
+<span class="fc" id="L25">        this.password = System.getenv(&quot;MONGO_PWD&quot;);</span>
+<span class="fc" id="L26">        this.database = System.getenv(&quot;MONGO_DB&quot;);</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Dependency injector.
+     *
+     * @param uri String to the mongoDB.
+     * @param user String username to log in with.
+     * @param password String passqord to log in with.
+     * @param database String the database to connect to.
+     */
+<span class="fc" id="L37">    public DBConnectorMongo(String uri, String user, String password, String database) {</span>
+<span class="fc" id="L38">        this.uri = uri;</span>
+<span class="fc" id="L39">        this.user = user;</span>
+<span class="fc" id="L40">        this.password = password;</span>
+<span class="fc" id="L41">        this.database = database;</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Create a mongodatabase client.
+     *
+     * @return MongoDatabase.
+     */
+    @Override
+    public MongoDatabase getConnection() {
+<span class="nc" id="L51">        MongoCredential credential = MongoCredential.createCredential(user, database, password.toCharArray());</span>
+<span class="nc" id="L52">        MongoClient mongoClient = new MongoClient(new ServerAddress(uri), Arrays.asList(credential));</span>
+<span class="nc" id="L53">        MongoDatabase db = mongoClient.getDatabase(database);</span>
+
+<span class="nc" id="L55">        return db;</span>
+    }
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
