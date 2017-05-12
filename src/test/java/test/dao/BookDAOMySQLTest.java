@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BookDAOMYSQLTest {
+public class BookDAOMySQLTest {
 
 	@Test
 	public void test() {
