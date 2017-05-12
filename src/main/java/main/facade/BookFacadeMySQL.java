@@ -1,6 +1,6 @@
 package main.facade;
 
-import main.dao.BookDAOMYSQL;
+import main.dao.BookDAOMySQL;
 import main.dao.IBookDAO;
 import main.dto.Author;
 import main.dto.Book;
@@ -9,22 +9,23 @@ import main.exception.BookNotFoundException;
 
 import java.util.List;
 
-public class BookFacadeMYSQL implements IBookFacade{
+public class BookFacadeMySQL implements IBookFacade{
 
     private IBookDAO dao;
 
     /**
      * Default constructor.
      */
-    public BookFacadeMYSQL() {
-        this.dao = new BookDAOMYSQL();
+    public BookFacadeMySQL() {
+        this.dao = new BookDAOMySQL();
     }
 
     /**
      * Constructor with dependency injector.
+     * 
      * @param dao IBookDAO The dao.
      */
-    public BookFacadeMYSQL(IBookDAO dao) {
+    public BookFacadeMySQL(IBookDAO dao) {
         this.dao = dao;
     }
 
