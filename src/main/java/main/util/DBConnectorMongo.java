@@ -1,6 +1,5 @@
 package main.util;
 
-import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
@@ -14,7 +13,6 @@ public class DBConnectorMongo implements IDBConnectorMongo {
     private String user;
     private String password;
     private String database;
-    private MongoDatabase connection;
 
     /**
      * Default constructor.
