@@ -116,7 +116,7 @@ public class BookFacadeMongoTest {
         books.add(new Book("title", authors, locations, "text"));
 
         Book book = new Book();
-        dao = mock(BookDAOMySQL.class);
+        dao = mock(BookDAOMongo.class);
         when(dao.getCitiesFromBook(book))
                 .thenReturn(books);
 
@@ -130,7 +130,7 @@ public class BookFacadeMongoTest {
         IBookDAO dao;
 
         Book book = new Book();
-        dao = mock(BookDAOMySQL.class);
+        dao = mock(BookDAOMongo.class);
         when(dao.getCitiesFromBook(book)).
                 thenReturn(null);
 
@@ -151,7 +151,7 @@ public class BookFacadeMongoTest {
         books.add(new Book("title", authors, locations, "text"));
 
         Location location = new Location();
-        dao = mock(BookDAOMySQL.class);
+        dao = mock(BookDAOMongo.class);
         when(dao.getAuthorsAndBooksFromCity(location)).
                 thenReturn(books);
 
@@ -165,7 +165,7 @@ public class BookFacadeMongoTest {
         IBookDAO dao;
 
         Location location = new Location();
-        dao = mock(BookDAOMySQL.class);
+        dao = mock(BookDAOMongo.class);
         when(dao.getAuthorsAndBooksFromCity(location)).
                 thenReturn(null);
 
