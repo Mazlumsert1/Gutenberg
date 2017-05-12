@@ -22,6 +22,7 @@ public class BookFacadeMySQL implements IBookFacade{
 
     /**
      * Constructor with dependency injector.
+     * 
      * @param dao IBookDAO The dao.
      */
     public BookFacadeMySQL(IBookDAO dao) {

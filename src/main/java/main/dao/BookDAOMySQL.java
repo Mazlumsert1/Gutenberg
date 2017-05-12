@@ -21,6 +21,7 @@ public class BookDAOMySQL implements IBookDAO {
 
     /**
      * Constructor with dependency injection.
+     *
      * @param connector IDBConnectorMySQL The connector to the MYSQL database.
      */
     public BookDAOMySQL(IDBConnectorMySQL connector) {
