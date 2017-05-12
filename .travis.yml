@@ -4,7 +4,7 @@ jdk: oraclejdk8
 
 # Loads in the deploy.sh script from root.
 before-script:
-chmod ugo+x deploy.sh
+- chmod ugo+x deploy.sh
 
 # Override the normal script mvn test -B, runs the script loaded from the script above
 script:
