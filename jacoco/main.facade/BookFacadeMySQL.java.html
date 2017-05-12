@@ -22,11 +22,12 @@ public class BookFacadeMySQL implements IBookFacade{
 
     /**
      * Constructor with dependency injector.
+     * 
      * @param dao IBookDAO The dao.
      */
-<span class="fc" id="L27">    public BookFacadeMySQL(IBookDAO dao) {</span>
-<span class="fc" id="L28">        this.dao = dao;</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L28">    public BookFacadeMySQL(IBookDAO dao) {</span>
+<span class="fc" id="L29">        this.dao = dao;</span>
+<span class="fc" id="L30">    }</span>
 
     /**
      * Gets a list of books from the data access object and returns it.
@@ -38,11 +39,11 @@ public class BookFacadeMySQL implements IBookFacade{
      */
     @Override
     public List&lt;Book&gt; getBooksFromLatLong(String latitude, String longitude) throws BookNotFoundException {
-<span class="fc" id="L41">        List&lt;Book&gt; books = dao.getBooksFromLatLong(latitude, longitude);</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (null == books) {</span>
-<span class="fc" id="L43">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
+<span class="fc" id="L42">        List&lt;Book&gt; books = dao.getBooksFromLatLong(latitude, longitude);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (null == books) {</span>
+<span class="fc" id="L44">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
         }
-<span class="fc" id="L45">        return books;</span>
+<span class="fc" id="L46">        return books;</span>
     }
 
     /**
@@ -54,11 +55,11 @@ public class BookFacadeMySQL implements IBookFacade{
      */
     @Override
     public List&lt;Book&gt; getBooksAndCitiesFromAuthor(Author author) throws BookNotFoundException {
-<span class="fc" id="L57">        List&lt;Book&gt; books = dao.getBooksAndCitiesFromAuthor(author);</span>
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (null == books) {</span>
-<span class="fc" id="L59">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
+<span class="fc" id="L58">        List&lt;Book&gt; books = dao.getBooksAndCitiesFromAuthor(author);</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (null == books) {</span>
+<span class="fc" id="L60">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
         }
-<span class="fc" id="L61">        return books;</span>
+<span class="fc" id="L62">        return books;</span>
     }
 
     /**
@@ -70,11 +71,11 @@ public class BookFacadeMySQL implements IBookFacade{
      */
     @Override
     public List&lt;Book&gt; getCitiesFromBook(Book book) throws BookNotFoundException {
-<span class="fc" id="L73">        List&lt;Book&gt; books = dao.getCitiesFromBook(book);</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (null == books) {</span>
-<span class="fc" id="L75">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
+<span class="fc" id="L74">        List&lt;Book&gt; books = dao.getCitiesFromBook(book);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (null == books) {</span>
+<span class="fc" id="L76">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
         }
-<span class="fc" id="L77">        return books;</span>
+<span class="fc" id="L78">        return books;</span>
     }
 
     /**
@@ -86,11 +87,11 @@ public class BookFacadeMySQL implements IBookFacade{
      */
     @Override
     public List&lt;Book&gt; getAuthorsAndBookFromCity(Location location) throws BookNotFoundException {
-<span class="fc" id="L89">        List&lt;Book&gt; books = dao.getAuthorsAndBooksFromCity(location);</span>
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (null == books) {</span>
-<span class="fc" id="L91">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
+<span class="fc" id="L90">        List&lt;Book&gt; books = dao.getAuthorsAndBooksFromCity(location);</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (null == books) {</span>
+<span class="fc" id="L92">            throw new BookNotFoundException(&quot;No Book was found&quot;);</span>
         }
-<span class="fc" id="L93">        return books;</span>
+<span class="fc" id="L94">        return books;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

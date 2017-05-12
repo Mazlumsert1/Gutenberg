@@ -21,11 +21,12 @@ public class BookDAOMySQL implements IBookDAO {
 
     /**
      * Constructor with dependency injection.
+     *
      * @param connector IDBConnectorMySQL The connector to the MYSQL database.
      */
-<span class="fc" id="L26">    public BookDAOMySQL(IDBConnectorMySQL connector) {</span>
-<span class="fc" id="L27">        this.connector = connector;</span>
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L27">    public BookDAOMySQL(IDBConnectorMySQL connector) {</span>
+<span class="fc" id="L28">        this.connector = connector;</span>
+<span class="fc" id="L29">    }</span>
 
     /**
      * Returns a List of books from the MYSQL database which have the location of a latitude and longitude mentioned.
@@ -36,7 +37,7 @@ public class BookDAOMySQL implements IBookDAO {
      */
     @Override
     public List&lt;Book&gt; getBooksFromLatLong(String latitude, String longitude) {
-<span class="nc" id="L39">        return null;</span>
+<span class="nc" id="L40">        return null;</span>
     }
 
     /**
@@ -47,7 +48,7 @@ public class BookDAOMySQL implements IBookDAO {
      */
     @Override
     public List&lt;Book&gt; getBooksAndCitiesFromAuthor(Author author) {
-<span class="nc" id="L50">        return null;</span>
+<span class="nc" id="L51">        return null;</span>
     }
 
     /**
@@ -58,7 +59,7 @@ public class BookDAOMySQL implements IBookDAO {
      */
     @Override
     public List&lt;Book&gt; getCitiesFromBook(Book book) {
-<span class="nc" id="L61">        return null;</span>
+<span class="nc" id="L62">        return null;</span>
     }
 
     /**
@@ -69,7 +70,7 @@ public class BookDAOMySQL implements IBookDAO {
      */
     @Override
     public List&lt;Book&gt; getAuthorsAndBooksFromCity(Location location) {
-<span class="nc" id="L72">        return null;</span>
+<span class="nc" id="L73">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
