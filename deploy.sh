@@ -5,7 +5,7 @@
 
 set -ev # -e tells the script to stop if error, -v prints the script before running
 
-if[[ $TRAVIS_BRANCH == 'master']] then
+if [ ${TRAVIS_BRANCH} == 'master' ]; then
 	mvn clean verify site -X;
 else
 	mvn verify;
