@@ -1,6 +1,5 @@
 package main.facade;
 
-import main.dao.BookDAOMySQL;
 import main.dao.IBookDAO;
 import main.dto.Author;
 import main.dto.Book;
@@ -9,23 +8,19 @@ import main.exception.BookNotFoundException;
 
 import java.util.List;
 
-public class BookFacadeMySQL implements IBookFacade{
-
+/**
+ * Class that distributes calls to either the MySQL, or Mongo database through the injection in the constructor.
+ */
+public class BookFacade implements IBookFacade
+{
     private IBookDAO dao;
 
     /**
-     * Default constructor.
-     */
-    public BookFacadeMySQL() {
-        this.dao = new BookDAOMySQL();
-    }
-
-    /**
      * Constructor with dependency injector.
-     * 
+     *
      * @param dao IBookDAO The dao.
      */
-    public BookFacadeMySQL(IBookDAO dao) {
+    public BookFacade(IBookDAO dao) {
         this.dao = dao;
     }
 
