@@ -16,7 +16,7 @@ public interface IBookFacade {
      * @param longitude String The longitude.
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
-    public List<Book> getBooksFromLatLong(String latitude, String longitude) throws BookNotFoundException;
+    public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius) throws BookNotFoundException;
 
     /**
      * Returns a List of books an author has written.

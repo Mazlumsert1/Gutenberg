@@ -43,7 +43,7 @@ public class BookDAOMySQL implements IBookDAO {
 	 * @return List of books The list of books where the location is mentioned.
 	 */
 	@Override
-	public List<Book> getBooksFromLatLong(String latitude, String longitude) {
+	public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius) {
 		return null;
 	}
 

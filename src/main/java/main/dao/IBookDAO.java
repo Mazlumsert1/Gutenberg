@@ -15,7 +15,7 @@ public interface IBookDAO {
      * @param longitude String The longitude.
      * @return List of books.
      */
-    public List<Book> getBooksFromLatLong(String latitude, String longitude);
+    public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius);
 
     /**
      * Returns a List of books an author has written.

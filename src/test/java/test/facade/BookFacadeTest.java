@@ -20,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -49,11 +50,11 @@ public class BookFacadeTest {
         books.add(new Book());
 
         dao = mock(BookDAOMySQL.class);
-        when(dao.getBooksFromLatLong(anyString(), anyString())).
+        when(dao.getBooksFromLatLong(anyString(), anyString(), anyInt())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getBooksFromLatLong(anyString(), anyString()), is(books));
+        assertThat(facade.getBooksFromLatLong(anyString(), anyString(), anyInt()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -62,11 +63,11 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         dao = mock(BookDAOMySQL.class);
-        when(dao.getBooksFromLatLong(anyString(), anyString())).
+        when(dao.getBooksFromLatLong(anyString(), anyString(), anyInt())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getBooksFromLatLong(anyString(), anyString());
+        facade.getBooksFromLatLong(anyString(), anyString(), anyInt());
     }
 
     @Test
@@ -78,11 +79,11 @@ public class BookFacadeTest {
         books.add(new Book());
 
         dao = mock(BookDAOMongo.class);
-        when(dao.getBooksFromLatLong(anyString(), anyString())).
+        when(dao.getBooksFromLatLong(anyString(), anyString(), anyInt())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getBooksFromLatLong(anyString(), anyString()), is(books));
+        assertThat(facade.getBooksFromLatLong(anyString(), anyString(), anyInt()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -91,11 +92,11 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         dao = mock(BookDAOMongo.class);
-        when(dao.getBooksFromLatLong(anyString(),anyString())).
+        when(dao.getBooksFromLatLong(anyString(),anyString(), anyInt())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getBooksFromLatLong(anyString(), anyString());
+        facade.getBooksFromLatLong(anyString(), anyString(), anyInt());
     }
 
     @Test
