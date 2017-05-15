@@ -60,7 +60,7 @@ public class BookDAOMongo implements IBookDAO {
      * @return List of books with locations.
      */
     @Override
-    public List<Book> getCitiesFromBook(Book book) {
+    public List<Location> getCitiesFromBook(String title) {
         return null;
     }
 

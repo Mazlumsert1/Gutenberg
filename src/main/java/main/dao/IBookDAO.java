@@ -27,10 +27,10 @@ public interface IBookDAO {
     /**
      * Returns a List of books where cities mentioned in a book is in.
      *
-     * @param book Book The book.
+     * @param title String The title of a book.
      * @return List of books The books where the cities are mentioned.
      */
-    public List<Book> getCitiesFromBook(Book book);
+    public List<Location> getCitiesFromBook(String title);
 
     /**
      * Returns a List of books which has a specific location somewhere in the text.

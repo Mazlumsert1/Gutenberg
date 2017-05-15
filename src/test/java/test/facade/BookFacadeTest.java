@@ -103,7 +103,7 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1.1231, 1.12312, "Jydeland"));
+        locations.add(new Location(1L,"1.1231", "1.12312", "Jydeland"));
         List<Author> authors = new ArrayList<>();
 
         List<Book> books = new ArrayList<>();
@@ -138,7 +138,7 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1.1231, 1.12312, "Jydeland"));
+        locations.add(new Location(1L, "1.1231", "1.12312", "Jydeland"));
         List<Author> authors = new ArrayList<>();
 
         List<Book> books = new ArrayList<>();
@@ -173,19 +173,14 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1.1231, 1.12312, "Jydeland"));
-        List<Author> authors = new ArrayList<>();
+        locations.add(new Location(1L, "1.1231", "1.12312", "Jydeland"));
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("title", authors, locations, "text"));
-
-        Book book = new Book();
         dao = mock(BookDAOMySQL.class);
-        when(dao.getCitiesFromBook(book))
-                .thenReturn(books);
+        when(dao.getCitiesFromBook("title"))
+                .thenReturn(locations);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getCitiesFromBook(book), is(books));
+        assertThat(facade.getCitiesFromBook("title"), is(locations));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -193,13 +188,12 @@ public class BookFacadeTest {
         IBookFacade facade;
         IBookDAO dao;
 
-        Book book = new Book();
         dao = mock(BookDAOMySQL.class);
-        when(dao.getCitiesFromBook(book)).
+        when(dao.getCitiesFromBook("title")).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getCitiesFromBook(book);
+        facade.getCitiesFromBook("title");
     }
 
     @Test
@@ -208,19 +202,14 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1.1231, 1.12312, "Jydeland"));
-        List<Author> authors = new ArrayList<>();
+        locations.add(new Location(1L, "1.1231", "1.12312", "Jydeland"));
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("title", authors, locations, "text"));
-
-        Book book = new Book();
         dao = mock(BookDAOMongo.class);
-        when(dao.getCitiesFromBook(book))
-                .thenReturn(books);
+        when(dao.getCitiesFromBook("title"))
+                .thenReturn(locations);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getCitiesFromBook(book), is(books));
+        assertThat(facade.getCitiesFromBook("title"), is(locations));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -228,13 +217,12 @@ public class BookFacadeTest {
         IBookFacade facade;
         IBookDAO dao;
 
-        Book book = new Book();
         dao = mock(BookDAOMongo.class);
-        when(dao.getCitiesFromBook(book)).
+        when(dao.getCitiesFromBook("title")).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getCitiesFromBook(book);
+        facade.getCitiesFromBook("title");
     }
 
     @Test
