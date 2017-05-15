@@ -53,6 +53,60 @@ public class BookDAOMySQL implements IBookDAO {
      */
     @Override
     public List<Book> getBooksAndCitiesFromAuthor(String name) {
+        List<Book> books = new ArrayList<>();
+        String queryString =
+                "SELECT DISTINCT b.b_id, b.title, b.text, a.a_id, l.l_id, l.latitude, l.longitude, l.name " +
+                        "FROM book b " +
+                        "JOIN book_location bl ON b.b_id = bl.b_id " +
+                        "JOIN location l ON bl.l_id = l.l_id " +
+                        "JOIN author_book ab ON b.b_id = ab.b_id " +
+                        "JOIN author a ON ab.a_id = a.a_id " +
+                        "WHERE a.name = ?" +
+                        "ORDER BY b.b_id;";
+        try {
+            Connection con = connector.getConnection();
+            PreparedStatement statement = con.prepareStatement(queryString);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.getFetchSize() == 0) {
+                return null;
+            }
+
+            Book book = null;
+
+            Long currentBookUID = null;
+
+            while (resultSet.next()) {
+                if (currentBookUID != resultSet.getLong(1)) {
+
+                    List<Author> authors = new ArrayList<>();
+                    authors.add(new Author(resultSet.getLong(4) ,name));
+                    List<Location> locations = new ArrayList<>();
+                    book = new Book(
+                            resultSet.getLong(1),
+                            resultSet.getString(2),
+                            authors,
+                            locations,
+                            resultSet.getString(3)
+                    );
+                    books.add(book);
+                }
+                Location location = new Location(
+                        resultSet.getLong(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8)
+                );
+
+            }
+
+        } catch (SQLException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
+
         return null;
     }
 
@@ -69,7 +123,7 @@ public class BookDAOMySQL implements IBookDAO {
                 "SELECT * FROM location l " +
                         "JOIN book_location bl ON l.l_id = bl.l_id " +
                         "JOIN book b ON bl.b_id = b.b_id " +
-                        "WHERE MATCH(b.title) AGAINST(?) AND b.title LIKE ?";
+                        "WHERE MATCH(b.title) AGAINST(?) AND b.title LIKE ?;";
 
         try {
             Connection con = connector.getConnection();

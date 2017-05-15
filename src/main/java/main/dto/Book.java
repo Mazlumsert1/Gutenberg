@@ -50,10 +50,19 @@ public class Book {
     /**
      * Gets the UID of the Book.
      *
-     * @return long The UID of the Book.
+     * @return Long The UID of the Book.
      */
     public long getUID() {
         return UID;
+    }
+
+    /**
+     * Sets the UID of the Book.
+     *
+     * @param UID Long The UID of the Book.
+     */
+    public void setUID(long UID) {
+        this.UID = UID;
     }
 
     /**

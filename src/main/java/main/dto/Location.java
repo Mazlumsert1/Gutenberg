@@ -37,6 +37,15 @@ public class Location {
     }
 
     /**
+     * Sets the UID of the location.
+     *
+     * @param UID Long The UID of the location.
+     */
+    public void setUID(Long UID) {
+        this.UID = UID;
+    }
+
+    /**
      * Get the latitude of the location.
      *
      * @return Double The latitude of the location.
