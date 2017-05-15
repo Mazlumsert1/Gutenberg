@@ -4,6 +4,7 @@ import main.dao.BookDAOMySQL;
 import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
+import main.exception.BookNotFoundException;
 import main.util.DBConnectorMySQL;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +40,7 @@ public class BookDAOMySQLTest {
 	}
 
 	@Test
-	public void getLocationsFromBookTest() {
+	public void successfulGetLocationsFromBookTest() {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
 		List<Location> locations = new ArrayList<>();
 		locations.add(new Location(1L, "latitude", "longitude", "name"));
@@ -50,4 +51,12 @@ public class BookDAOMySQLTest {
 		assertThat(dao.getCitiesFromBook(anyString()),is(locations));
 	}
 
+	@Test
+	public void failedGetLocationsFromBookTest() {
+		BookDAOMySQL dao = mock(BookDAOMySQL.class);
+		when(dao.getCitiesFromBook(anyString())).
+				thenReturn(null);
+
+		assertThat(dao.getCitiesFromBook(anyString()), is(nullValue()));
+	}
 }

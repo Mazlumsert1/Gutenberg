@@ -73,6 +73,10 @@ public class BookDAOMySQL implements IBookDAO {
             preparedStatement.setString(1, title);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            if (resultSet.getFetchSize() == 0) {
+                return null;
+            }
+
             while (resultSet.next()) {
                 Location location = new Location(
                         resultSet.getLong(1),
@@ -82,10 +86,11 @@ public class BookDAOMySQL implements IBookDAO {
                         );
                 locations.add(location);
             }
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            return null;
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            return null;
         }
         return locations;
     }
