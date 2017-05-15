@@ -4,6 +4,7 @@ import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
+import main.exception.ConnectionAlreadyClosedException;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface IBookFacade {
      * @return List of books The books the author has written.
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
-    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException;
+    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException;
 
     /**
      * Returns a List of books where cities mentioned in a book is in.
@@ -33,7 +34,7 @@ public interface IBookFacade {
      * @return List of books The books where the cities are mentioned.
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
-    public List<Location> getCitiesFromBook(String title) throws BookNotFoundException;
+    public List<Location> getCitiesFromBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException;
 
     /**
      * Returns a List of books which has a specific location somewhere in the text.

@@ -7,6 +7,7 @@ import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
+import main.exception.ConnectionAlreadyClosedException;
 import main.facade.BookFacade;
 import main.facade.IBookFacade;
 import org.junit.Test;
@@ -98,7 +99,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMySQLSuccessfulBooksAndCitiesFromAuthorTest() throws BookNotFoundException {
+    public void getMySQLSuccessfulBooksAndCitiesFromAuthorTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -118,7 +119,7 @@ public class BookFacadeTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMySQLEmptyResponseBooksAndCitiesFromAuthorTest() throws BookNotFoundException {
+    public void getMySQLEmptyResponseBooksAndCitiesFromAuthorTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -132,7 +133,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMongoSuccessfulBooksAndCitiesFromAuthorTest() throws BookNotFoundException {
+    public void getMongoSuccessfulBooksAndCitiesFromAuthorTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -153,7 +154,7 @@ public class BookFacadeTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMongoEmptyResponseBooksAndCitiesFromAuthorTest() throws BookNotFoundException {
+    public void getMongoEmptyResponseBooksAndCitiesFromAuthorTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -167,7 +168,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMySQLSuccessfulCitiesFromBookTest() throws  BookNotFoundException {
+    public void getMySQLSuccessfulCitiesFromBookTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -183,7 +184,7 @@ public class BookFacadeTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMySQLEmptyResponseCitiesFromBookTest() throws BookNotFoundException {
+    public void getMySQLEmptyResponseCitiesFromBookTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -196,7 +197,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMongoSuccessfulCitiesFromBookTest() throws  BookNotFoundException {
+    public void getMongoSuccessfulCitiesFromBookTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -212,7 +213,7 @@ public class BookFacadeTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMongoEmptyResponseCitiesFromBookTest() throws BookNotFoundException {
+    public void getMongoEmptyResponseCitiesFromBookTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 

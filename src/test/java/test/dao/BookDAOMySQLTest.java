@@ -5,6 +5,7 @@ import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
+import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMySQL;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,7 +41,7 @@ public class BookDAOMySQLTest {
 	}
 
 	@Test
-	public void successfulGetLocationsFromBookTest() {
+	public void successfulGetLocationsFromBookTest() throws ConnectionAlreadyClosedException {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
 		List<Location> locations = new ArrayList<>();
 		locations.add(new Location(1L, "latitude", "longitude", "name"));
@@ -52,7 +53,7 @@ public class BookDAOMySQLTest {
 	}
 
 	@Test
-	public void failedGetLocationsFromBookTest() {
+	public void failedGetLocationsFromBookTest() throws ConnectionAlreadyClosedException {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
 		when(dao.getCitiesFromBook(anyString())).
 				thenReturn(null);
@@ -61,7 +62,7 @@ public class BookDAOMySQLTest {
 	}
 
 	@Test
-    public void successfulGetBooksAndCitiesFromAuthor() {
+    public void successfulGetBooksAndCitiesFromAuthor() throws ConnectionAlreadyClosedException {
 	    List<Book> books = new ArrayList<>();
 
 	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
@@ -72,7 +73,7 @@ public class BookDAOMySQLTest {
     }
 
     @Test
-    public void failedGetBooksAndCitiesFromAuthor() {
+    public void failedGetBooksAndCitiesFromAuthor() throws ConnectionAlreadyClosedException {
 	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
 	    when(dao.getBooksAndCitiesFromAuthor(anyString())).
                 thenReturn(null);

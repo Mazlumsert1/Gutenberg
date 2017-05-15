@@ -3,6 +3,7 @@ package main.dao;
 import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
+import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMySQL;
 import main.util.IDBConnectorMySQL;
 
@@ -53,7 +54,7 @@ public class BookDAOMySQL implements IBookDAO {
 	 * @return List of books which are written by the author.
 	 */
 	@Override
-	public List<Book> getBooksAndCitiesFromAuthor(String name) {
+	public List<Book> getBooksAndCitiesFromAuthor(String name) throws ConnectionAlreadyClosedException {
 		List<Book> books = new ArrayList<>();
 		String queryString =
 				"SELECT DISTINCT b.b_id, b.title, b.text, a.a_id, l.l_id, l.latitude, l.longitude, l.name " +
@@ -70,7 +71,7 @@ public class BookDAOMySQL implements IBookDAO {
 			statement.setString(1, name);
 			ResultSet resultSet = statement.executeQuery();
 
-			if (resultSet.getFetchSize() == 0) {
+			if (!resultSet.last()) {
 				return null;
 			}
 
@@ -101,17 +102,16 @@ public class BookDAOMySQL implements IBookDAO {
 							resultSet.getString(8)
 					));
 				}
-
-
 			}
-
 		} catch (SQLException | ClassNotFoundException e) {
 			if (Objects.equals(System.getenv("PROCESS_ENV"), "prod")) {
 				return null;
 			} else {
 				e.printStackTrace();
 			}
-		}
+		} finally {
+		    connector.closeConnection();
+        }
 
 		return books;
 	}
@@ -123,7 +123,7 @@ public class BookDAOMySQL implements IBookDAO {
 	 * @return List of books with locations.
 	 */
 	@Override
-	public List<Location> getCitiesFromBook(String title) {
+	public List<Location> getCitiesFromBook(String title) throws ConnectionAlreadyClosedException {
 		List<Location> locations = new ArrayList<>();
 		String queryString =
 				"SELECT * FROM location l " +
@@ -138,9 +138,9 @@ public class BookDAOMySQL implements IBookDAO {
 			preparedStatement.setString(2, title);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			if (resultSet.getFetchSize() == 0) {
-				return null;
-			}
+            if (!resultSet.last()) {
+                return null;
+            }
 
 			while (resultSet.next()) {
 				Location location = new Location(
@@ -152,12 +152,16 @@ public class BookDAOMySQL implements IBookDAO {
 				locations.add(location);
 			}
 
-		} catch (SQLException e) {
-			return null;
-		} catch (ClassNotFoundException e) {
-			return null;
-		}
-		return locations;
+		} catch (SQLException | ClassNotFoundException e) {
+            if (Objects.equals(System.getenv("PROCESS_ENV"), "prod")) {
+                return null;
+            } else {
+                e.printStackTrace();
+            }
+		} finally {
+		    connector.closeConnection();
+        }
+        return locations;
 	}
 
 	/**

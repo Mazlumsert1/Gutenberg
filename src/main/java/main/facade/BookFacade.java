@@ -5,6 +5,7 @@ import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
+import main.exception.ConnectionAlreadyClosedException;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class BookFacade implements IBookFacade
      * @throws BookNotFoundException Exception If the author has not written any books.
      */
     @Override
-    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException {
+    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException {
         List<Book> books = dao.getBooksAndCitiesFromAuthor(name);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
@@ -65,7 +66,7 @@ public class BookFacade implements IBookFacade
      * @throws BookNotFoundException Exception If the book doesn't mention any cities.
      */
     @Override
-    public List<Location> getCitiesFromBook(String title) throws BookNotFoundException {
+    public List<Location> getCitiesFromBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException {
         List<Location> books = dao.getCitiesFromBook(title);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
