@@ -48,11 +48,11 @@ public class BookDAOMySQL implements IBookDAO {
     /**
      * Returns a List of books from the MYSQL database which is written by the author.
      *
-     * @param author Author The author who has written the books.
+     * @param name String The name of the author who has written the books.
      * @return List of books which are written by the author.
      */
     @Override
-    public List<Book> getBooksAndCitiesFromAuthor(Author author) {
+    public List<Book> getBooksAndCitiesFromAuthor(String name) {
         return null;
     }
 

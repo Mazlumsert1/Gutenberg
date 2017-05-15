@@ -44,13 +44,13 @@ public class BookFacade implements IBookFacade
     /**
      * Gets a list of books from the dao and returns it.
      *
-     * @param author Author The author that is searched for in the database.
+     * @param name String the name of the author that is searched for in the database.
      * @return List of Books The books that the Author has written.
      * @throws BookNotFoundException Exception If the author has not written any books.
      */
     @Override
-    public List<Book> getBooksAndCitiesFromAuthor(Author author) throws BookNotFoundException {
-        List<Book> books = dao.getBooksAndCitiesFromAuthor(author);
+    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException {
+        List<Book> books = dao.getBooksAndCitiesFromAuthor(name);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
         }

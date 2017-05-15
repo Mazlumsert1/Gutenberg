@@ -109,13 +109,12 @@ public class BookFacadeTest {
         List<Book> books = new ArrayList<>();
         books.add(new Book("title", authors, locations, "text"));
 
-        Author author = new Author();
         dao = mock(BookDAOMySQL.class);
-        when(dao.getBooksAndCitiesFromAuthor(author)).
+        when(dao.getBooksAndCitiesFromAuthor(anyString())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getBooksAndCitiesFromAuthor(author), is(books));
+        assertThat(facade.getBooksAndCitiesFromAuthor(anyString()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -125,11 +124,11 @@ public class BookFacadeTest {
 
         Author author = new Author();
         dao = mock(BookDAOMySQL.class);
-        when(dao.getBooksAndCitiesFromAuthor(author))
+        when(dao.getBooksAndCitiesFromAuthor(anyString()))
                 .thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getBooksAndCitiesFromAuthor(author);
+        facade.getBooksAndCitiesFromAuthor(anyString());
     }
 
     @Test
@@ -146,11 +145,11 @@ public class BookFacadeTest {
 
         Author author = new Author();
         dao = mock(BookDAOMongo.class);
-        when(dao.getBooksAndCitiesFromAuthor(author)).
+        when(dao.getBooksAndCitiesFromAuthor(anyString())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getBooksAndCitiesFromAuthor(author), is(books));
+        assertThat(facade.getBooksAndCitiesFromAuthor(anyString()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -160,11 +159,11 @@ public class BookFacadeTest {
 
         Author author = new Author();
         dao = mock(BookDAOMongo.class);
-        when(dao.getBooksAndCitiesFromAuthor(author)).
+        when(dao.getBooksAndCitiesFromAuthor(anyString())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getBooksAndCitiesFromAuthor(author);
+        facade.getBooksAndCitiesFromAuthor(anyString());
     }
 
     @Test

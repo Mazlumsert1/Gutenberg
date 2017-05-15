@@ -20,11 +20,11 @@ public interface IBookFacade {
     /**
      * Returns a List of books an author has written.
      *
-     * @param author Author The author.
+     * @param name String The name of the author.
      * @return List of books The books the author has written.
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
-    public List<Book> getBooksAndCitiesFromAuthor(Author author) throws BookNotFoundException;
+    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException;
 
     /**
      * Returns a List of books where cities mentioned in a book is in.

@@ -19,10 +19,10 @@ public interface IBookDAO {
     /**
      * Returns a List of books an author has written.
      *
-     * @param author Author The author.
+     * @param name String The name of the author.
      * @return List of books The books the author has written.
      */
-    public List<Book> getBooksAndCitiesFromAuthor(Author author);
+    public List<Book> getBooksAndCitiesFromAuthor(String name);
 
     /**
      * Returns a List of books where cities mentioned in a book is in.
