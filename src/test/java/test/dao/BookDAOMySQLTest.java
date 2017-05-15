@@ -1,13 +1,22 @@
 package test.dao;
 
 import main.dao.BookDAOMySQL;
+import main.dto.Author;
+import main.dto.Book;
+import main.dto.Location;
 import main.util.DBConnectorMySQL;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookDAOMySQLTest {
@@ -27,6 +36,18 @@ public class BookDAOMySQLTest {
 		dao = new BookDAOMySQL(connector);
 
 		assertThat(dao, is(notNullValue()));
+	}
+
+	@Test
+	public void getLocationsFromBookTest() {
+		BookDAOMySQL dao = mock(BookDAOMySQL.class);
+		List<Location> locations = new ArrayList<>();
+		locations.add(new Location(1L, "latitude", "longitude", "name"));
+
+		when(dao.getCitiesFromBook(anyString())).
+				thenReturn(locations);
+
+		assertThat(dao.getCitiesFromBook(anyString()),is(locations));
 	}
 
 }

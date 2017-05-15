@@ -6,6 +6,11 @@ import main.dto.Location;
 import main.util.DBConnectorMySQL;
 import main.util.IDBConnectorMySQL;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAOMySQL implements IBookDAO {
@@ -58,8 +63,31 @@ public class BookDAOMySQL implements IBookDAO {
      * @return List of books with locations.
      */
     @Override
-    public List<Book> getCitiesFromBook(Book book) {
-        return null;
+    public List<Location> getCitiesFromBook(String title) {
+        List<Location> locations = new ArrayList<>();
+        String queryString = "SELECT * FROM location l JOIN book_location bl ON l.l_id = bl.l_id JOIN book b ON bl.b_id = b.b_id WHERE b.title = ?";
+
+        try {
+            Connection con = connector.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(queryString);
+            preparedStatement.setString(1, title);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Location location = new Location(
+                        resultSet.getLong(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4)
+                        );
+                locations.add(location);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return locations;
     }
 
     /**
