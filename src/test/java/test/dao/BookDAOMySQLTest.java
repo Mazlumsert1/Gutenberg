@@ -59,4 +59,24 @@ public class BookDAOMySQLTest {
 
 		assertThat(dao.getCitiesFromBook(anyString()), is(nullValue()));
 	}
+
+	@Test
+    public void successfulGetBooksAndCitiesFromAuthor() {
+	    List<Book> books = new ArrayList<>();
+
+	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
+	    when(dao.getBooksAndCitiesFromAuthor(anyString())).
+                thenReturn(books);
+
+	    assertThat(dao.getBooksAndCitiesFromAuthor(anyString()), is(books));
+    }
+
+    @Test
+    public void failedGetBooksAndCitiesFromAuthor() {
+	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
+	    when(dao.getBooksAndCitiesFromAuthor(anyString())).
+                thenReturn(null);
+
+	    assertThat(dao.getBooksAndCitiesFromAuthor(anyString()), is(nullValue()));
+    }
 }
