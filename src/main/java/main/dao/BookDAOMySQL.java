@@ -65,12 +65,17 @@ public class BookDAOMySQL implements IBookDAO {
     @Override
     public List<Location> getCitiesFromBook(String title) {
         List<Location> locations = new ArrayList<>();
-        String queryString = "SELECT * FROM location l JOIN book_location bl ON l.l_id = bl.l_id JOIN book b ON bl.b_id = b.b_id WHERE b.title = ?";
+        String queryString =
+                "SELECT * FROM location l " +
+                        "JOIN book_location bl ON l.l_id = bl.l_id " +
+                        "JOIN book b ON bl.b_id = b.b_id " +
+                        "WHERE MATCH(b.title) AGAINST(?) AND b.title LIKE ?";
 
         try {
             Connection con = connector.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(queryString);
             preparedStatement.setString(1, title);
+            preparedStatement.setString(2, title);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.getFetchSize() == 0) {
