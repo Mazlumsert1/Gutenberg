@@ -136,4 +136,21 @@ public class Book {
     public void setText(String text) {
         this.text = text;
     }
+
+    /**
+     * Adds a location to the locations list.
+     *
+     * @param location The location to add
+     */
+    public void addLocation(Location location) {
+        this.locations.add(location);
+    }
+
+    /**
+     * Adds a location to the locations list.
+     * @param author The author to add
+     */
+	public void addAuthor(Author author) {
+        this.authors.add(author);
+	}
 }
