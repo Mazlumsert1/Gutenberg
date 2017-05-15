@@ -69,8 +69,9 @@ public class BookTest {
         List<Location> locations = new ArrayList<Location>();
         locations.add(new Location(1L, "54.906702", "9.754529", "Dybbøl"));
         locations.add(new Location(1L, "54.939615", "8.864417", "Tønder"));
-        book = new Book("Den Sønderjyske Mafia!", authors, locations, "Sønderbronx er hvor det sker!");
+        book = new Book(1L, "Den Sønderjyske Mafia!", authors, locations, "Sønderbronx er hvor det sker!");
 
+        book.setUID(2L);
         book.setTitle("Den søde stenaldermand");
         authors.add(new Author("Ugga Bukka"));
         book.setAuthors(authors);
@@ -78,10 +79,27 @@ public class BookTest {
         book.setLocations(locations);
         book.setText("RAWWWR");
 
+        assertThat(book.getUID(), is(2L));
         assertThat(book.getTitle(), is("Den søde stenaldermand"));
         assertThat(book.getAuthors().size(), is(2));
         assertThat(book.getLocations().size(), is(3));
         assertThat(book.getText(), is("RAWWWR"));
 	}
+
+	@Test
+    public void addLocationTest() {
+        Book book = new Book(1L,"title", new ArrayList<>(), new ArrayList<>(), "text");
+        book.addLocation(new Location(1L, "latitude", "longitude", "name"));
+
+        assertThat(book.getLocations().get(0).getUID(), is(1L));
+    }
+
+    @Test
+    public void addAuthorTest() {
+        Book book = new Book(1L,"title", new ArrayList<>(), new ArrayList<>(), "text");
+        book.addAuthor(new Author(1L, "name"));
+
+        assertThat(book.getAuthors().get(0).getName(), is("name"));
+    }
 
 }
