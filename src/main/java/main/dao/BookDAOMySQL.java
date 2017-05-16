@@ -72,31 +72,34 @@ public class BookDAOMySQL implements IBookDAO {
 
             ResultSet resultSet = statement.executeQuery();
 
-            if (!resultSet.last()) {
-                return null;
-            }
+           //if (!resultSet.last()) {
+             //   return null;
+            //}
 
             Book book = null;
             long currentBookUID = 0L;
 
             while (resultSet.next()) {
-                book = new Book(
-                        resultSet.getLong(1),
-                        resultSet.getString(2),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        resultSet.getString(3)
-                );
-                books.add(book);
-                book.addAuthor(new Author(resultSet.getLong(4), resultSet.getString(5)));
+                if (currentBookUID != resultSet.getLong(1)) {
+                    currentBookUID = resultSet.getLong(1);
+                    book = new Book(
+                            resultSet.getLong(1),
+                            resultSet.getString(2),
+                            new ArrayList<>(),
+                            new ArrayList<>(),
+                            new ArrayList<>(),
+                            resultSet.getString(3)
+                    );
+                    books.add(book);
+                    book.addAuthor(new Author(resultSet.getLong(4), resultSet.getString(5)));
+                }
 
                 if (book != null) {
                     book.addLocationWithinRadius(new Location(
-                            resultSet.getLong(5),
-                            resultSet.getDouble(6),
+                            resultSet.getLong(6),
                             resultSet.getDouble(7),
-                            resultSet.getString(8)
+                            resultSet.getDouble(8),
+                            resultSet.getString(9)
                     ));
                 }
             }
