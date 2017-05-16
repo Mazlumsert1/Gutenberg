@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -228,7 +229,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMySQLSuccessfulAuthorsAndBooksFromCity() throws BookNotFoundException {
+    public void getMySQLSuccessfulAuthorsAndBooksFromCity() throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -248,7 +249,7 @@ public class BookFacadeTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMySQLEmptyResponseAuthorsAndBooksFromCity() throws BookNotFoundException {
+    public void getMySQLEmptyResponseAuthorsAndBooksFromCity() throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -262,7 +263,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMongoSuccessfulAuthorsAndBooksFromCity() throws BookNotFoundException {
+    public void getMongoSuccessfulAuthorsAndBooksFromCity() throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -283,7 +284,7 @@ public class BookFacadeTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMongoEmptyResponseAuthorsAndBooksFromCity() throws BookNotFoundException {
+    public void getMongoEmptyResponseAuthorsAndBooksFromCity() throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
         IBookFacade facade;
         IBookDAO dao;
 

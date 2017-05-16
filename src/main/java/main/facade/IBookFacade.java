@@ -6,6 +6,7 @@ import main.dto.Location;
 import main.exception.BookNotFoundException;
 import main.exception.ConnectionAlreadyClosedException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IBookFacade {
@@ -43,5 +44,5 @@ public interface IBookFacade {
      * @return List of books The books where the location is mentioned.
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
-    public List<Book> getAuthorsAndBookFromCity(String name) throws BookNotFoundException;
+    public List<Book> getAuthorsAndBookFromCity(String name) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException;
 }

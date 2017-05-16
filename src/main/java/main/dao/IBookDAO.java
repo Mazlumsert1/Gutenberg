@@ -5,6 +5,7 @@ import main.dto.Book;
 import main.dto.Location;
 import main.exception.ConnectionAlreadyClosedException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IBookDAO {
@@ -39,5 +40,5 @@ public interface IBookDAO {
      * @param name String The name of he location that is mentioned.
      * @return List of books The books where the location is mentioned.
      */
-    public List<Book> getAuthorsAndBooksFromCity(String name);
+    public List<Book> getAuthorsAndBooksFromCity(String name) throws SQLException, ClassNotFoundException, ConnectionAlreadyClosedException;
 }

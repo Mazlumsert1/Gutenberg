@@ -104,7 +104,11 @@ public class BookDAOMySQL implements IBookDAO {
                 }
             }
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+            if (Objects.equals(System.getenv("PROCESS_ENV"), "prod")) {
+                return null;
+            } else {
+                e.printStackTrace();
+            }
 		} finally {
 			connector.closeConnection();
 		}
@@ -235,9 +239,47 @@ public class BookDAOMySQL implements IBookDAO {
 	 * @return List of books The books where the location is mentioned.
 	 */
 	@Override
-	public List<Book> getAuthorsAndBooksFromCity(String name) {
+	public List<Book> getAuthorsAndBooksFromCity(String name) throws ConnectionAlreadyClosedException {
+        List<Book> books = new ArrayList<>();
+	    String queryString = "" +
+                "SELECT b.b_id, b.title, b.text, a.a_id, a.name " +
+                "FROM book b " +
+                "JOIN author_book ab ON b.b_id = ab.b_id " +
+                "JOIN author a ON ab.a_id = a.a_id " +
+                "JOIN book_location bl ON b.b_id = bl.b_id " +
+                "JOIN location l ON bl.l_id = l.l_id " +
+                "WHERE l.name = ?;";
 
-	    String queryString = "SELECT b.b_id, b.text, b.title, a.a_id, a.name FROM book b JOIN author_book ab ON b.b_id = ab.b_id JOIN author a ON ab.a_id = a.a_id JOIN book_location bl ON b.b_id = bl.b_id JOIN location l ON bl.l_id = l.l_id WHERE l.name = Washington;";
-	    return null;
+        Connection con = null;
+        try {
+            con = connector.getConnection();
+            PreparedStatement statement = con.prepareStatement(queryString);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Book book = new Book(
+                        resultSet.getLong(1),
+                        resultSet.getString(2),
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        resultSet.getString(3)
+                );
+                book.addAuthor(new Author(
+                        resultSet.getLong(4),
+                        resultSet.getString(5)
+                ));
+                books.add(book);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            if (Objects.equals(System.getenv("PROCESS_ENV"), "prod")) {
+                return null;
+            } else {
+                e.printStackTrace();
+            }
+        } finally {
+            connector.closeConnection();
+        }
+        return books;
 	}
 }
