@@ -7,6 +7,7 @@ public class Book {
     private String title;
     private List<Author> authors;
     private List<Location> locations;
+    private List<Location> locationsWithinRadius;
     private String text;
 
     /**
@@ -140,7 +141,7 @@ public class Book {
     /**
      * Adds a location to the locations list.
      *
-     * @param location The location to add
+     * @param location The location to add.
      */
     public void addLocation(Location location) {
         this.locations.add(location);
@@ -148,9 +149,37 @@ public class Book {
 
     /**
      * Adds a location to the locations list.
-     * @param author The author to add
+     *
+     * @param author The author to add.
      */
 	public void addAuthor(Author author) {
         this.authors.add(author);
 	}
+
+    /**
+     * Gets a list of locations within a radius of another point.
+     *
+     * @return List of locations The list of locations within the radius of another point.
+     */
+    public List<Location> getLocationsWithinRadius() {
+        return locationsWithinRadius;
+    }
+
+    /**
+     * Sets a list of locations within a radius of another point.
+     *
+     * @param locationsWithinRadius List of locations The list of locations within the radius of another point.
+     */
+    public void setLocationsWithinRadius(List<Location> locationsWithinRadius) {
+        this.locationsWithinRadius = locationsWithinRadius;
+    }
+
+    /**
+     * Adds a locations to the location within locations list.
+     *
+     * @param location The location to add.
+     */
+    public void addLocationWithinRadius(Location location) {
+        this.locationsWithinRadius.add(location);
+    }
 }
