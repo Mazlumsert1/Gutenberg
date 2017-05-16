@@ -42,28 +42,33 @@ public class BookDAOMySQL implements IBookDAO {
 	@Override
 	public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) throws ConnectionAlreadyClosedException {
 		List<Book> books = new ArrayList<>();
-		String queryString = "SELECT l.l_id, l.latitude, l.longitude,l.name, (" +
-                "6371 * acos (" +
-                "cos ( radians(?) ) " +
-                "* cos( radians( ? ) ) " +
-                "* cos( radians( l.longitude ) - radians(?) ) " +
-                "+ sin ( radians(?) ) " +
-                "* sin( radians( l.latitude ) )" +
-                ")" +
-                ") " +
-                "AS distance " +
-                "FROM location l " +
-                "HAVING distance < ? " +
-                "ORDER BY distance LIMIT 0, 20;";
+		String queryString = "" +
+                "SELECT b.b_id, b.title, b.text, a.a_id, a.name, l1.l_id, l1.latitude, l1.longitude, l1.name " +
+                "FROM book b " +
+                "JOIN author_book ab ON b.b_id = ab.b_id " +
+                "JOIN author a ON ab.a_id = a.a_id " +
+                "JOIN book_location bl ON b.b_id = bl.b_id " +
+                "JOIN location l1 ON bl.l_id = l1.l_id " +
+                "WHERE l1.l_id IN(" +
+                    "SELECT l2.l_id " +
+                    "FROM location l2 " +
+                    "WHERE(" +
+                        "6371 * acos(" +
+                        "cos(radians(?)) " +
+                        "* cos(radians(l2.latitude)) " +
+                        "* cos(radians(l2.longitude) - radians(?)) " +
+                        "+ sin ( radians(?) ) " +
+                        "* sin(radians( l2.latitude ))" +
+                    ")) < ?" +
+                ");";
 
 		try {
 			Connection con = connector.getConnection();
 			PreparedStatement statement = con.prepareStatement(queryString);
             statement.setDouble(1,latitude);
-            statement.setDouble(2, latitude);
-            statement.setDouble(3, longitude);
-            statement.setDouble(4, latitude);
-            statement.setInt(5, radius);
+            statement.setDouble(2, longitude);
+            statement.setDouble(3, latitude);
+            statement.setInt(4, radius);
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -72,7 +77,7 @@ public class BookDAOMySQL implements IBookDAO {
             }
 
             while (resultSet.next()) {
-                
+
             }
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
