@@ -6,8 +6,6 @@ public class Location {
     private double latitude;
     private double longitude;
     private String name;
-    private double distance;
-
     /**
      * Default constructor.
      */
@@ -27,21 +25,6 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
-    }
-
-    /**
-     * Constructor that instantiates a location with latitude, longitude and name.
-     *
-     * @param latitude Double The latitude of the Location.
-     * @param longitude Double The longitude of the Location.
-     * @param name String The name of the Location.
-     */
-    public Location(Long UID, double latitude, double longitude, String name, double distance) {
-        this.UID = UID;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.name = name;
-        this.distance = distance;
     }
 
     /**
@@ -114,22 +97,5 @@ public class Location {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * Get the distance to another location.
-     * @return distance Double The distance to the other location.
-     */
-    public double getDistance() {
-        return distance;
-    }
-
-    /**
-     * Set the distance to another location.
-     *
-     * @param distance double The distance to another location.
-     */
-    public void setDistance(double distance) {
-        this.distance = distance;
     }
 }
