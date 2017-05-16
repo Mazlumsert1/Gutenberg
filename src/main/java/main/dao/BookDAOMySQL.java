@@ -76,8 +76,28 @@ public class BookDAOMySQL implements IBookDAO {
                 return null;
             }
 
-            while (resultSet.next()) {
+            Book book = null;
+            long currentBookUID = 0L;
 
+            while (resultSet.next()) {
+                book = new Book(
+                        resultSet.getLong(1),
+                        resultSet.getString(2),
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        resultSet.getString(3)
+                );
+                books.add(book);
+                book.addAuthor(new Author(resultSet.getLong(4), resultSet.getString(5)));
+
+                if (book != null) {
+                    book.addLocation(new Location(
+                            resultSet.getLong(5),
+                            resultSet.getDouble(6),
+                            resultSet.getDouble(7),
+                            resultSet.getString(8)
+                    ));
+                }
             }
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
