@@ -85,13 +85,14 @@ public class BookDAOMySQL implements IBookDAO {
                         resultSet.getString(2),
                         new ArrayList<>(),
                         new ArrayList<>(),
+                        new ArrayList<>(),
                         resultSet.getString(3)
                 );
                 books.add(book);
                 book.addAuthor(new Author(resultSet.getLong(4), resultSet.getString(5)));
 
                 if (book != null) {
-                    book.addLocation(new Location(
+                    book.addLocationWithinRadius(new Location(
                             resultSet.getLong(5),
                             resultSet.getDouble(6),
                             resultSet.getDouble(7),

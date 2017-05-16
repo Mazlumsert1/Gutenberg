@@ -48,6 +48,15 @@ public class Book {
         this.text = text;
     }
 
+    public Book(long UID, String title, List<Author> authors, List<Location> locations, List<Location> locationsWithinRadius, String text) {
+        this.UID = UID;
+        this.title = title;
+        this.authors = authors;
+        this.locations = locations;
+        this.locationsWithinRadius = locationsWithinRadius;
+        this.text = text;
+    }
+
     /**
      * Gets the UID of the Book.
      *
