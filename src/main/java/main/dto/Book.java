@@ -7,6 +7,7 @@ public class Book {
     private String title;
     private List<Author> authors;
     private List<Location> locations;
+    private List<Location> locationsWithinRadius;
     private String text;
 
     /**
@@ -47,13 +48,31 @@ public class Book {
         this.text = text;
     }
 
+    public Book(long UID, String title, List<Author> authors, List<Location> locations, List<Location> locationsWithinRadius, String text) {
+        this.UID = UID;
+        this.title = title;
+        this.authors = authors;
+        this.locations = locations;
+        this.locationsWithinRadius = locationsWithinRadius;
+        this.text = text;
+    }
+
     /**
      * Gets the UID of the Book.
      *
-     * @return long The UID of the Book.
+     * @return Long The UID of the Book.
      */
     public long getUID() {
         return UID;
+    }
+
+    /**
+     * Sets the UID of the Book.
+     *
+     * @param UID Long The UID of the Book.
+     */
+    public void setUID(long UID) {
+        this.UID = UID;
     }
 
     /**
@@ -126,5 +145,50 @@ public class Book {
      */
     public void setText(String text) {
         this.text = text;
+    }
+
+    /**
+     * Adds a location to the locations list.
+     *
+     * @param location The location to add.
+     */
+    public void addLocation(Location location) {
+        this.locations.add(location);
+    }
+
+    /**
+     * Adds a location to the locations list.
+     *
+     * @param author The author to add.
+     */
+	public void addAuthor(Author author) {
+        this.authors.add(author);
+	}
+
+    /**
+     * Gets a list of locations within a radius of another point.
+     *
+     * @return List of locations The list of locations within the radius of another point.
+     */
+    public List<Location> getLocationsWithinRadius() {
+        return locationsWithinRadius;
+    }
+
+    /**
+     * Sets a list of locations within a radius of another point.
+     *
+     * @param locationsWithinRadius List of locations The list of locations within the radius of another point.
+     */
+    public void setLocationsWithinRadius(List<Location> locationsWithinRadius) {
+        this.locationsWithinRadius = locationsWithinRadius;
+    }
+
+    /**
+     * Adds a locations to the location within locations list.
+     *
+     * @param location The location to add.
+     */
+    public void addLocationWithinRadius(Location location) {
+        this.locationsWithinRadius.add(location);
     }
 }

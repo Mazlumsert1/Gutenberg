@@ -38,18 +38,18 @@ public class BookDAOMongo implements IBookDAO {
      * @return List of books The list of books where the location is mentioned.
      */
     @Override
-    public List<Book> getBooksFromLatLong(String latitude, String longitude) {
+    public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) {
         return null;
     }
 
     /**
      * Returns a List of books from the Mongo database which is written by the author.
      *
-     * @param author Author The author who has written the books.
+     * @param name String The name of the author who has written the books.
      * @return List of books The books which are written by the author.
      */
     @Override
-    public List<Book> getBooksAndCitiesFromAuthor(Author author) {
+    public List<Book> getBooksAndCitiesFromAuthor(String name) {
         return null;
     }
 
@@ -60,18 +60,18 @@ public class BookDAOMongo implements IBookDAO {
      * @return List of books with locations.
      */
     @Override
-    public List<Book> getCitiesFromBook(Book book) {
+    public List<Location> getCitiesFromBook(String title) {
         return null;
     }
 
     /**
      * Returns a List of books from the Mongo database which has a location mentioned somewhere in the book.
      *
-     * @param location Location The location that is mentioned in the books.
+     * @param name String The name of the location that is mentioned in the books.
      * @return List of books The books where the location is mentioned.
      */
     @Override
-    public List<Book> getAuthorsAndBooksFromCity(Location location) {
+    public List<Book> getAuthorsAndBooksFromCity(String name) {
         return null;
     }
 }
