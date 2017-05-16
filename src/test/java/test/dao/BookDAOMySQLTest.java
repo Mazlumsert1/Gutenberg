@@ -1,10 +1,8 @@
 package test.dao;
 
 import main.dao.BookDAOMySQL;
-import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
-import main.exception.BookNotFoundException;
 import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMySQL;
 import org.junit.Test;
@@ -108,7 +106,6 @@ public class BookDAOMySQLTest {
 		List<Book> books = new ArrayList<>();
 
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
-		Location location = new Location();
 		when(dao.getAuthorsAndBooksFromCity(anyString())).
 				thenReturn(books);
 
@@ -118,10 +115,29 @@ public class BookDAOMySQLTest {
 	@Test
 	public void failedGetAuthorsAndBooksFromCities() throws ConnectionAlreadyClosedException {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
-		Location location = new Location();
 		when(dao.getAuthorsAndBooksFromCity(anyString())).
 				thenReturn(null);
 
 		assertThat(dao.getAuthorsAndBooksFromCity(anyString()), is(nullValue()));
 	}
+
+	// Has to be changed to an integration test.
+	/*
+	@Test
+	public void someTest() throws ConnectionAlreadyClosedException {
+		BookDAOMySQL dao = new BookDAOMySQL();
+		List<Book> books = dao.getAuthorsAndBooksFromCity("Washington");
+
+		for (Book book : books) {
+			System.out.println("Title: " + book.getTitle() + ", Author: " + book.getAuthors().get(0).getName());
+		}
+		System.out.println("\n ------------------------------------------------------------\n");
+
+		books = dao.getBooksFromLatLong(43.4125, 23.225, 100);
+
+		for (Book book : books) {
+			System.out.println("Title: " + book.getTitle() + ", Author: " + book.getAuthors().get(0).getName() + ", Mentioned locations: " + book.getLocationsWithinRadius().size());
+		}
+	}
+	*/
 }

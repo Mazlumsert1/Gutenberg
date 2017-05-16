@@ -72,10 +72,6 @@ public class BookDAOMySQL implements IBookDAO {
 
             ResultSet resultSet = statement.executeQuery();
 
-           //if (!resultSet.last()) {
-             //   return null;
-            //}
-
             Book book = null;
             long currentBookUID = 0L;
 
@@ -137,11 +133,7 @@ public class BookDAOMySQL implements IBookDAO {
 			Connection con = connector.getConnection();
 			PreparedStatement statement = con.prepareStatement(queryString);
 			statement.setString(1, name);
-			ResultSet resultSet = statement.executeQuery();
-
-			if (!resultSet.last()) {
-				return null;
-			}
+            ResultSet resultSet = statement.executeQuery();
 
 			Book book = null;
 			long currentBookUID = 0L;
@@ -206,10 +198,6 @@ public class BookDAOMySQL implements IBookDAO {
 			preparedStatement.setString(2, title);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (!resultSet.last()) {
-                return null;
-            }
-
 			while (resultSet.next()) {
 				Location location = new Location(
 						resultSet.getLong(1),
@@ -249,6 +237,7 @@ public class BookDAOMySQL implements IBookDAO {
                 "JOIN book_location bl ON b.b_id = bl.b_id " +
                 "JOIN location l ON bl.l_id = l.l_id " +
                 "WHERE l.name = ?;";
+
 
         Connection con = null;
         try {
