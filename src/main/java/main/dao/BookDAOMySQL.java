@@ -7,10 +7,7 @@ import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMySQL;
 import main.util.IDBConnectorMySQL;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -43,8 +40,31 @@ public class BookDAOMySQL implements IBookDAO {
 	 * @return List of books The list of books where the location is mentioned.
 	 */
 	@Override
-	public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius) {
-		return null;
+	public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) throws ConnectionAlreadyClosedException {
+		List<Book> books = new ArrayList<>();
+		String queryString = "";
+
+		try {
+			Connection con = connector.getConnection();
+			PreparedStatement statement = con.prepareStatement(queryString);
+            statement.setDouble(1,latitude);
+            statement.setDouble(2, longitude);
+            statement.setInt(3, radius);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (!resultSet.last()) {
+                return null;
+            }
+
+            while (resultSet.next()) {
+
+            }
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			connector.closeConnection();
+		}
+		return books;
 	}
 
 	/**
@@ -97,8 +117,8 @@ public class BookDAOMySQL implements IBookDAO {
 				if (book != null) {
 					book.addLocation(new Location(
 							resultSet.getLong(5),
-							resultSet.getString(6),
-							resultSet.getString(7),
+							resultSet.getDouble(6),
+							resultSet.getDouble(7),
 							resultSet.getString(8)
 					));
 				}
@@ -145,8 +165,8 @@ public class BookDAOMySQL implements IBookDAO {
 			while (resultSet.next()) {
 				Location location = new Location(
 						resultSet.getLong(1),
-						resultSet.getString(2),
-						resultSet.getString(3),
+						resultSet.getDouble(2),
+						resultSet.getDouble(3),
 						resultSet.getString(4)
 				);
 				locations.add(location);

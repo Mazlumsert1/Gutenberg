@@ -38,7 +38,7 @@ public class BookDAOMongo implements IBookDAO {
      * @return List of books The list of books where the location is mentioned.
      */
     @Override
-    public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius) {
+    public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) {
         return null;
     }
 

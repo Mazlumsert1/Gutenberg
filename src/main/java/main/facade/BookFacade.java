@@ -34,7 +34,7 @@ public class BookFacade implements IBookFacade
      * @throws BookNotFoundException Exception If no books mention the location.
      */
     @Override
-    public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius) throws BookNotFoundException {
+    public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) throws BookNotFoundException, ConnectionAlreadyClosedException {
         List<Book> books = dao.getBooksFromLatLong(latitude, longitude, radius);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");

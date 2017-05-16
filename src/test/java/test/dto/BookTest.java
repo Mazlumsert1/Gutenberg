@@ -35,8 +35,8 @@ public class BookTest {
         List<Author> authors = new ArrayList<Author>();
         authors.add(new Author("L'Ron Harald"));
         List<Location> locations = new ArrayList<Location>();
-        locations.add(new Location(1L, "54.906702", "9.754529", "Dybbøl"));
-        locations.add(new Location(1L, "54.939615", "8.864417", "Tønder"));
+        locations.add(new Location(1L, 54.906702, 9.754529, "Dybbøl"));
+        locations.add(new Location(1L, 54.939615, 8.864417, "Tønder"));
         book = new Book("Den Sønderjyske Mafia!", authors, locations, "Sønderbronx er hvor det sker!");
 
         assertThat(book.getTitle(), is("Den Sønderjyske Mafia!"));
@@ -51,8 +51,8 @@ public class BookTest {
         List<Author> authors = new ArrayList<Author>();
         authors.add(new Author("L'Ron Harald"));
         List<Location> locations = new ArrayList<Location>();
-        locations.add(new Location(1L, "54.906702", "9.754529", "Dybbøl"));
-        locations.add(new Location(1L, "54.939615", "8.864417", "Tønder"));
+        locations.add(new Location(1L, 54.906702, 9.754529, "Dybbøl"));
+        locations.add(new Location(1L, 54.939615, 8.864417, "Tønder"));
 		book = new Book(2L, "Den Sønderjyske Mafia!", authors, locations, "Sønderbronx er hvor det sker!");
 
 		assertThat(book.getUID(), is(2L));
@@ -67,15 +67,15 @@ public class BookTest {
         List<Author> authors = new ArrayList<Author>();
         authors.add(new Author("L'Ron Harald"));
         List<Location> locations = new ArrayList<Location>();
-        locations.add(new Location(1L, "54.906702", "9.754529", "Dybbøl"));
-        locations.add(new Location(1L, "54.939615", "8.864417", "Tønder"));
+        locations.add(new Location(1L, 54.906702, 9.754529, "Dybbøl"));
+        locations.add(new Location(1L, 54.939615, 8.864417, "Tønder"));
         book = new Book(1L, "Den Sønderjyske Mafia!", authors, locations, "Sønderbronx er hvor det sker!");
 
         book.setUID(2L);
         book.setTitle("Den søde stenaldermand");
         authors.add(new Author("Ugga Bukka"));
         book.setAuthors(authors);
-        locations.add(new Location(1L, "50.850346", "4.351721", "Brussels"));
+        locations.add(new Location(1L, 50.850346, 4.351721, "Brussels"));
         book.setLocations(locations);
         book.setText("RAWWWR");
 
@@ -89,7 +89,7 @@ public class BookTest {
 	@Test
     public void addLocationTest() {
         Book book = new Book(1L,"title", new ArrayList<>(), new ArrayList<>(), "text");
-        book.addLocation(new Location(1L, "latitude", "longitude", "name"));
+        book.addLocation(new Location(1L, 123.123,123.123, "name"));
 
         assertThat(book.getLocations().get(0).getUID(), is(1L));
     }

@@ -3,8 +3,8 @@ package main.dto;
 public class Location {
 
     private Long UID;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private String name;
 
     /**
@@ -20,7 +20,7 @@ public class Location {
      * @param longitude Double The longitude of the Location.
      * @param name String The name of the Location.
      */
-    public Location(Long UID, String latitude, String longitude, String name) {
+    public Location(Long UID, double latitude, double longitude, String name) {
         this.UID = UID;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -50,7 +50,7 @@ public class Location {
      *
      * @return Double The latitude of the location.
      */
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -59,7 +59,7 @@ public class Location {
      *
      * @param latitude Double The latitude of the location.
      */
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -68,7 +68,7 @@ public class Location {
      *
      * @return Double The longitude of the location.
      */
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -77,7 +77,7 @@ public class Location {
      *
      * @param longitude Double The longitude of the location.
      */
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

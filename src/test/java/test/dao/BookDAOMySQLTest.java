@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -45,7 +46,7 @@ public class BookDAOMySQLTest {
 	public void successfulGetLocationsFromBookTest() throws ConnectionAlreadyClosedException {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
 		List<Location> locations = new ArrayList<>();
-		locations.add(new Location(1L, "latitude", "longitude", "name"));
+		locations.add(new Location(1L, 2.1230, 2.123, "name"));
 
 		when(dao.getCitiesFromBook(anyString())).
 				thenReturn(locations);
@@ -87,19 +88,19 @@ public class BookDAOMySQLTest {
 		List<Book> books = new ArrayList<>();
 
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
-		when(dao.getBooksFromLatLong(anyString(), anyString(),  anyInt())).
+		when(dao.getBooksFromLatLong(anyDouble(), anyDouble(),  anyInt())).
 				thenReturn(books);
 
-		assertThat(dao.getBooksFromLatLong(anyString(), anyString(), anyInt()), is(books));
+		assertThat(dao.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt()), is(books));
 	}
 
 	@Test
 	public void failedGetBooksFromLatitudeLongitudeTest() throws ConnectionAlreadyClosedException {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
-		when(dao.getBooksFromLatLong(anyString(),anyString(), anyInt())).
+		when(dao.getBooksFromLatLong(anyDouble(),anyDouble(), anyInt())).
 				thenReturn(null);
 
-		assertThat(dao.getBooksFromLatLong(anyString(),anyString(),anyInt()), is(nullValue()));
+		assertThat(dao.getBooksFromLatLong(anyDouble(),anyDouble(),anyInt()), is(nullValue()));
 	}
 
 	@Test

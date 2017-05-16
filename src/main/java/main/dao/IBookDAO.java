@@ -15,7 +15,7 @@ public interface IBookDAO {
      * @param longitude String The longitude.
      * @return List of books.
      */
-    public List<Book> getBooksFromLatLong(String latitude, String longitude, int radius);
+    public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) throws ConnectionAlreadyClosedException;
 
     /**
      * Returns a List of books an author has written.

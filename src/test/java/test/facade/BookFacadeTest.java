@@ -20,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -42,7 +43,7 @@ public class BookFacadeTest {
     }
 
     @Test
-    public void getMySQLSuccessfulBooksFromLatitudeLongitudeTest() throws BookNotFoundException {
+    public void getMySQLSuccessfulBooksFromLatitudeLongitudeTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -50,28 +51,28 @@ public class BookFacadeTest {
         books.add(new Book());
 
         dao = mock(BookDAOMySQL.class);
-        when(dao.getBooksFromLatLong(anyString(), anyString(), anyInt())).
+        when(dao.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getBooksFromLatLong(anyString(), anyString(), anyInt()), is(books));
+        assertThat(facade.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMySQLEmptyResponseBooksFromLatitudeLongitudeTest() throws BookNotFoundException {
+    public void getMySQLEmptyResponseBooksFromLatitudeLongitudeTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
         dao = mock(BookDAOMySQL.class);
-        when(dao.getBooksFromLatLong(anyString(), anyString(), anyInt())).
+        when(dao.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getBooksFromLatLong(anyString(), anyString(), anyInt());
+        facade.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt());
     }
 
     @Test
-    public void getMongoSuccessfulBooksFromLatitudeLongitudeTest() throws BookNotFoundException {
+    public void getMongoSuccessfulBooksFromLatitudeLongitudeTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
@@ -79,24 +80,24 @@ public class BookFacadeTest {
         books.add(new Book());
 
         dao = mock(BookDAOMongo.class);
-        when(dao.getBooksFromLatLong(anyString(), anyString(), anyInt())).
+        when(dao.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getBooksFromLatLong(anyString(), anyString(), anyInt()), is(books));
+        assertThat(facade.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void getMongoEmptyResponseBooksFromLatitudeLongitudeTest() throws BookNotFoundException {
+    public void getMongoEmptyResponseBooksFromLatitudeLongitudeTest() throws BookNotFoundException, ConnectionAlreadyClosedException {
         IBookFacade facade;
         IBookDAO dao;
 
         dao = mock(BookDAOMongo.class);
-        when(dao.getBooksFromLatLong(anyString(),anyString(), anyInt())).
+        when(dao.getBooksFromLatLong(anyDouble(),anyDouble(), anyInt())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getBooksFromLatLong(anyString(), anyString(), anyInt());
+        facade.getBooksFromLatLong(anyDouble(), anyDouble(), anyInt());
     }
 
     @Test
@@ -105,7 +106,7 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1L,"1.1231", "1.12312", "Jydeland"));
+        locations.add(new Location(1L,1.1231, 1.12312, "Jydeland"));
         List<Author> authors = new ArrayList<>();
 
         List<Book> books = new ArrayList<>();
@@ -139,7 +140,7 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1L, "1.1231", "1.12312", "Jydeland"));
+        locations.add(new Location(1L, 1.1231, 1.12312, "Jydeland"));
         List<Author> authors = new ArrayList<>();
 
         List<Book> books = new ArrayList<>();
@@ -174,7 +175,7 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1L, "1.1231", "1.12312", "Jydeland"));
+        locations.add(new Location(1L, 1.1231, 1.12312, "Jydeland"));
 
         dao = mock(BookDAOMySQL.class);
         when(dao.getCitiesFromBook("title"))
@@ -203,7 +204,7 @@ public class BookFacadeTest {
         IBookDAO dao;
 
         List<Location> locations = new ArrayList<>();
-        locations.add(new Location(1L, "1.1231", "1.12312", "Jydeland"));
+        locations.add(new Location(1L, 1.1231, 1.12312, "Jydeland"));
 
         dao = mock(BookDAOMongo.class);
         when(dao.getCitiesFromBook("title"))
