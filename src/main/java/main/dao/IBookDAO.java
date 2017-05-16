@@ -36,8 +36,8 @@ public interface IBookDAO {
     /**
      * Returns a List of books which has a specific location somewhere in the text.
      *
-     * @param location Location The location that is mentioned.
+     * @param name String The name of he location that is mentioned.
      * @return List of books The books where the location is mentioned.
      */
-    public List<Book> getAuthorsAndBooksFromCity(Location location);
+    public List<Book> getAuthorsAndBooksFromCity(String name);
 }

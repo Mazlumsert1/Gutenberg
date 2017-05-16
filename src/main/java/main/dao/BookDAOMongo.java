@@ -67,11 +67,11 @@ public class BookDAOMongo implements IBookDAO {
     /**
      * Returns a List of books from the Mongo database which has a location mentioned somewhere in the book.
      *
-     * @param location Location The location that is mentioned in the books.
+     * @param name String The name of the location that is mentioned in the books.
      * @return List of books The books where the location is mentioned.
      */
     @Override
-    public List<Book> getAuthorsAndBooksFromCity(Location location) {
+    public List<Book> getAuthorsAndBooksFromCity(String name) {
         return null;
     }
 }

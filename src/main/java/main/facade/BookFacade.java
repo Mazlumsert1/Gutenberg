@@ -77,13 +77,13 @@ public class BookFacade implements IBookFacade
     /**
      * Gets a list of books from the dao and returns it.
      *
-     * @param location The location that is searched for in the database.
+     * @param name The name that is searched for in the database.
      * @return List of Books The books which the location is mentioned in.
      * @throws BookNotFoundException Exception If there is no books that is mentioned on the location.
      */
     @Override
-    public List<Book> getAuthorsAndBookFromCity(Location location) throws BookNotFoundException {
-        List<Book> books = dao.getAuthorsAndBooksFromCity(location);
+    public List<Book> getAuthorsAndBookFromCity(String name) throws BookNotFoundException {
+        List<Book> books = dao.getAuthorsAndBooksFromCity(name);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
         }

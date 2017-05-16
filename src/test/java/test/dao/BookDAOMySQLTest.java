@@ -109,19 +109,19 @@ public class BookDAOMySQLTest {
 
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
 		Location location = new Location();
-		when(dao.getAuthorsAndBooksFromCity(location)).
+		when(dao.getAuthorsAndBooksFromCity(anyString())).
 				thenReturn(books);
 
-		assertThat(dao.getAuthorsAndBooksFromCity(location), is(books));
+		assertThat(dao.getAuthorsAndBooksFromCity(anyString()), is(books));
 	}
 
 	@Test
 	public void failedGetAuthorsAndBooksFromCities() throws ConnectionAlreadyClosedException {
 		BookDAOMySQL dao = mock(BookDAOMySQL.class);
 		Location location = new Location();
-		when(dao.getAuthorsAndBooksFromCity(location)).
+		when(dao.getAuthorsAndBooksFromCity(anyString())).
 				thenReturn(null);
 
-		assertThat(dao.getAuthorsAndBooksFromCity(location), is(nullValue()));
+		assertThat(dao.getAuthorsAndBooksFromCity(anyString()), is(nullValue()));
 	}
 }

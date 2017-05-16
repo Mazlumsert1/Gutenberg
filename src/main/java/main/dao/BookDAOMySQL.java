@@ -231,11 +231,11 @@ public class BookDAOMySQL implements IBookDAO {
 	/**
 	 * Returns a List of books from the MYSQL database which has a location mentioned somewhere in the book.
 	 *
-	 * @param location Location The location that is mentioned in the books.
+	 * @param name String the name of the location that is mentioned in the books.
 	 * @return List of books The books where the location is mentioned.
 	 */
 	@Override
-	public List<Book> getAuthorsAndBooksFromCity(Location location) {
+	public List<Book> getAuthorsAndBooksFromCity(String name) {
 
 	    String queryString = "SELECT b.b_id, b.text, b.title, a.a_id, a.name FROM book b JOIN author_book ab ON b.b_id = ab.b_id JOIN author a ON ab.a_id = a.a_id JOIN book_location bl ON b.b_id = bl.b_id JOIN location l ON bl.l_id = l.l_id WHERE l.name = Washington;";
 	    return null;

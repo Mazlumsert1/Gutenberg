@@ -239,13 +239,12 @@ public class BookFacadeTest {
         List<Book> books = new ArrayList<>();
         books.add(new Book("title", authors, locations, "text"));
 
-        Location location = new Location();
         dao = mock(BookDAOMySQL.class);
-        when(dao.getAuthorsAndBooksFromCity(location)).
+        when(dao.getAuthorsAndBooksFromCity(anyString())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getAuthorsAndBookFromCity(location), is(books));
+        assertThat(facade.getAuthorsAndBookFromCity(anyString()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -255,11 +254,11 @@ public class BookFacadeTest {
 
         Location location = new Location();
         dao = mock(BookDAOMySQL.class);
-        when(dao.getAuthorsAndBooksFromCity(location)).
+        when(dao.getAuthorsAndBooksFromCity(anyString())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getAuthorsAndBookFromCity(location);
+        facade.getAuthorsAndBookFromCity(anyString());
     }
 
     @Test
@@ -276,11 +275,11 @@ public class BookFacadeTest {
 
         Location location = new Location();
         dao = mock(BookDAOMongo.class);
-        when(dao.getAuthorsAndBooksFromCity(location)).
+        when(dao.getAuthorsAndBooksFromCity(anyString())).
                 thenReturn(books);
 
         facade = new BookFacade(dao);
-        assertThat(facade.getAuthorsAndBookFromCity(location), is(books));
+        assertThat(facade.getAuthorsAndBookFromCity(anyString()), is(books));
     }
 
     @Test(expected = BookNotFoundException.class)
@@ -290,10 +289,10 @@ public class BookFacadeTest {
 
         Location location = new Location();
         dao = mock(BookDAOMongo.class);
-        when(dao.getAuthorsAndBooksFromCity(location)).
+        when(dao.getAuthorsAndBooksFromCity(anyString())).
                 thenReturn(null);
 
         facade = new BookFacade(dao);
-        facade.getAuthorsAndBookFromCity(location);
+        facade.getAuthorsAndBookFromCity(anyString());
     }
 }

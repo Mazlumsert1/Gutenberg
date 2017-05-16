@@ -39,9 +39,9 @@ public interface IBookFacade {
     /**
      * Returns a List of books which has a specific location somewhere in the text.
      *
-     * @param location Location The location that is mentioned.
+     * @param name String The name of the location that is mentioned.
      * @return List of books The books where the location is mentioned.
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
-    public List<Book> getAuthorsAndBookFromCity(Location location) throws BookNotFoundException;
+    public List<Book> getAuthorsAndBookFromCity(String name) throws BookNotFoundException;
 }
