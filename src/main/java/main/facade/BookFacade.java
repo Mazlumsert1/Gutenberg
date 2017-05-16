@@ -5,7 +5,9 @@ import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
+import main.exception.ConnectionAlreadyClosedException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -33,8 +35,8 @@ public class BookFacade implements IBookFacade
      * @throws BookNotFoundException Exception If no books mention the location.
      */
     @Override
-    public List<Book> getBooksFromLatLong(String latitude, String longitude) throws BookNotFoundException {
-        List<Book> books = dao.getBooksFromLatLong(latitude, longitude);
+    public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) throws BookNotFoundException, ConnectionAlreadyClosedException {
+        List<Book> books = dao.getBooksFromLatLong(latitude, longitude, radius);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
         }
@@ -44,13 +46,13 @@ public class BookFacade implements IBookFacade
     /**
      * Gets a list of books from the dao and returns it.
      *
-     * @param author Author The author that is searched for in the database.
+     * @param name String the name of the author that is searched for in the database.
      * @return List of Books The books that the Author has written.
      * @throws BookNotFoundException Exception If the author has not written any books.
      */
     @Override
-    public List<Book> getBooksAndCitiesFromAuthor(Author author) throws BookNotFoundException {
-        List<Book> books = dao.getBooksAndCitiesFromAuthor(author);
+    public List<Book> getBooksAndCitiesFromAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException {
+        List<Book> books = dao.getBooksAndCitiesFromAuthor(name);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
         }
@@ -60,13 +62,13 @@ public class BookFacade implements IBookFacade
     /**
      * Gets a list of books from the dao and returns it.
      *
-     * @param book Book The book that is searched for in the database.
+     * @param title String The title of the book that is searched for in the database.
      * @return List of Books The books which mentions cities mentioned in the book.
      * @throws BookNotFoundException Exception If the book doesn't mention any cities.
      */
     @Override
-    public List<Book> getCitiesFromBook(Book book) throws BookNotFoundException {
-        List<Book> books = dao.getCitiesFromBook(book);
+    public List<Location> getCitiesFromBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException {
+        List<Location> books = dao.getCitiesFromBook(title);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
         }
@@ -76,13 +78,13 @@ public class BookFacade implements IBookFacade
     /**
      * Gets a list of books from the dao and returns it.
      *
-     * @param location The location that is searched for in the database.
+     * @param name The name that is searched for in the database.
      * @return List of Books The books which the location is mentioned in.
      * @throws BookNotFoundException Exception If there is no books that is mentioned on the location.
      */
     @Override
-    public List<Book> getAuthorsAndBookFromCity(Location location) throws BookNotFoundException {
-        List<Book> books = dao.getAuthorsAndBooksFromCity(location);
+    public List<Book> getAuthorsAndBookFromCity(String name) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
+        List<Book> books = dao.getAuthorsAndBooksFromCity(name);
         if (null == books) {
             throw new BookNotFoundException("No Book was found");
         }
