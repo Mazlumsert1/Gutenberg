@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -62,7 +63,7 @@ public class BookDAOMySQLTest {
 	}
 
 	@Test
-    public void successfulGetBooksAndCitiesFromAuthor() throws ConnectionAlreadyClosedException {
+    public void successfulGetBooksAndCitiesFromAuthorTest() throws ConnectionAlreadyClosedException {
 	    List<Book> books = new ArrayList<>();
 
 	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
@@ -73,11 +74,53 @@ public class BookDAOMySQLTest {
     }
 
     @Test
-    public void failedGetBooksAndCitiesFromAuthor() throws ConnectionAlreadyClosedException {
+    public void failedGetBooksAndCitiesFromAuthorTest() throws ConnectionAlreadyClosedException {
 	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
 	    when(dao.getBooksAndCitiesFromAuthor(anyString())).
                 thenReturn(null);
 
 	    assertThat(dao.getBooksAndCitiesFromAuthor(anyString()), is(nullValue()));
     }
+
+    @Test
+	public void successfulGetBooksFromLatitudeLongitudeTest() throws ConnectionAlreadyClosedException {
+		List<Book> books = new ArrayList<>();
+
+		BookDAOMySQL dao = mock(BookDAOMySQL.class);
+		when(dao.getBooksFromLatLong(anyString(), anyString(),  anyInt())).
+				thenReturn(books);
+
+		assertThat(dao.getBooksFromLatLong(anyString(), anyString(), anyInt()), is(books));
+	}
+
+	@Test
+	public void failedGetBooksFromLatitudeLongitudeTest() throws ConnectionAlreadyClosedException {
+		BookDAOMySQL dao = mock(BookDAOMySQL.class);
+		when(dao.getBooksFromLatLong(anyString(),anyString(), anyInt())).
+				thenReturn(null);
+
+		assertThat(dao.getBooksFromLatLong(anyString(),anyString(),anyInt()), is(nullValue()));
+	}
+
+	@Test
+	public void successfulGetAuthorsAndBooksFromCities() throws ConnectionAlreadyClosedException {
+		List<Book> books = new ArrayList<>();
+
+		BookDAOMySQL dao = mock(BookDAOMySQL.class);
+		Location location = new Location();
+		when(dao.getAuthorsAndBooksFromCity(location)).
+				thenReturn(books);
+
+		assertThat(dao.getAuthorsAndBooksFromCity(location), is(books));
+	}
+
+	@Test
+	public void failedGetAuthorsAndBooksFromCities() throws ConnectionAlreadyClosedException {
+		BookDAOMySQL dao = mock(BookDAOMySQL.class);
+		Location location = new Location();
+		when(dao.getAuthorsAndBooksFromCity(location)).
+				thenReturn(null);
+
+		assertThat(dao.getAuthorsAndBooksFromCity(location), is(nullValue()));
+	}
 }
