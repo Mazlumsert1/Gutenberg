@@ -42,14 +42,29 @@ public class BookDAOMySQL implements IBookDAO {
 	@Override
 	public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) throws ConnectionAlreadyClosedException {
 		List<Book> books = new ArrayList<>();
-		String queryString = "";
+		String queryString = "SELECT l.l_id, l.latitude, l.longitude,l.name, (" +
+                "6371 * acos (" +
+                "cos ( radians(?) ) " +
+                "* cos( radians( ? ) ) " +
+                "* cos( radians( l.longitude ) - radians(?) ) " +
+                "+ sin ( radians(?) ) " +
+                "* sin( radians( l.latitude ) )" +
+                ")" +
+                ") " +
+                "AS distance " +
+                "FROM location l " +
+                "HAVING distance < ? " +
+                "ORDER BY distance LIMIT 0, 20;";
 
 		try {
 			Connection con = connector.getConnection();
 			PreparedStatement statement = con.prepareStatement(queryString);
             statement.setDouble(1,latitude);
-            statement.setDouble(2, longitude);
-            statement.setInt(3, radius);
+            statement.setDouble(2, latitude);
+            statement.setDouble(3, longitude);
+            statement.setDouble(4, latitude);
+            statement.setInt(5, radius);
+
             ResultSet resultSet = statement.executeQuery();
 
             if (!resultSet.last()) {
@@ -57,7 +72,7 @@ public class BookDAOMySQL implements IBookDAO {
             }
 
             while (resultSet.next()) {
-
+                
             }
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -192,6 +207,8 @@ public class BookDAOMySQL implements IBookDAO {
 	 */
 	@Override
 	public List<Book> getAuthorsAndBooksFromCity(Location location) {
-		return null;
+
+	    String queryString = "SELECT b.b_id, b.text, b.title, a.a_id, a.name FROM book b JOIN author_book ab ON b.b_id = ab.b_id JOIN author a ON ab.a_id = a.a_id JOIN book_location bl ON b.b_id = bl.b_id JOIN location l ON bl.l_id = l.l_id WHERE l.name = Washington;";
+	    return null;
 	}
 }
