@@ -25,6 +25,7 @@ import main.dao.BookDAOMySQL;
 import main.dao.IBookDAO;
 import main.dto.Book;
 import main.dto.Location;
+import main.dto.Page;
 import main.exception.BookNotFoundException;
 import main.exception.ConnectionAlreadyClosedException;
 import main.facade.BookFacade;
@@ -89,6 +90,55 @@ public class MySQLAPI {
         }
 
         return Response.status(Response.Status.OK).entity(gson.toJson(books)).build();
+    }
+
+    @GET
+    @Path("fuzzyauthor/{author}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFuzzySearchAuthor(@PathParam("author") String author){
+
+        Page page;
+        try {
+            page = new Page("Author", facade.getFuzzySearchAuthor(author));
+        } catch (ConnectionAlreadyClosedException | BookNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(gson.toJson(page)).build();
+
+    }
+
+    @GET
+    @Path("fuzzycity/{city}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFuzzySearchCity(@PathParam("city") String city){
+
+        Page page;
+        try {
+            page = new Page("City", facade.getFuzzySearchCity(city));
+        } catch (ConnectionAlreadyClosedException | BookNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(gson.toJson(page)).build();
+    }
+
+    @GET
+    @Path("fuzzybook/{book}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFuzzySearchBook(@PathParam("book") String book) throws SQLException, BookNotFoundException, ClassNotFoundException {
+
+        Page page;
+        try {
+            page = new Page("Book", facade.getFuzzySearchBook(book));
+        } catch (ConnectionAlreadyClosedException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(gson.toJson(page)).build();
     }
 
     /**

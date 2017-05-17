@@ -1,7 +1,6 @@
 package main.facade;
 
 import main.dao.IBookDAO;
-import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
@@ -89,5 +88,32 @@ public class BookFacade implements IBookFacade
             throw new BookNotFoundException("No Book was found");
         }
         return books;
+    }
+
+    @Override
+    public List<String> getFuzzySearchCity(String name) throws ConnectionAlreadyClosedException, BookNotFoundException {
+        List<String> cities = dao.getFuzzySearchCity(name);
+        if (null == cities) {
+            throw new BookNotFoundException("No city was found");
+        }
+        return cities;
+    }
+
+    @Override
+    public List<String> getFuzzySearchBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
+        List<String> books = dao.getFuzzySearchBook(title);
+        if (null == books) {
+            throw new BookNotFoundException("No book was found");
+        }
+        return books;
+    }
+
+    @Override
+    public List<String> getFuzzySearchAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException {
+        List<String> authors = dao.getFuzzySearchAuthor(name);
+        if (null == authors) {
+            throw new BookNotFoundException("No author was found");
+        }
+        return authors;
     }
 }

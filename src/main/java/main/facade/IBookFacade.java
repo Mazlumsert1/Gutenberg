@@ -1,6 +1,5 @@
 package main.facade;
 
-import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.BookNotFoundException;
@@ -45,4 +44,10 @@ public interface IBookFacade {
      * @throws BookNotFoundException Exception is thrown if no books are found.
      */
     public List<Book> getAuthorsAndBookFromCity(String name) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException;
+
+    public List<String> getFuzzySearchAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException;
+
+    public List<String> getFuzzySearchBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException;
+
+    public List<String> getFuzzySearchCity(String name) throws ConnectionAlreadyClosedException, BookNotFoundException;
 }

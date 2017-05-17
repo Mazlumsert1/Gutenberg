@@ -1,6 +1,5 @@
 package main.dao;
 
-import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
 import main.exception.ConnectionAlreadyClosedException;
@@ -41,4 +40,10 @@ public interface IBookDAO {
      * @return List of books The books where the location is mentioned.
      */
     public List<Book> getAuthorsAndBooksFromCity(String name) throws SQLException, ClassNotFoundException, ConnectionAlreadyClosedException;
+
+    public List<String> getFuzzySearchAuthor(String name) throws ConnectionAlreadyClosedException;
+
+    public List<String> getFuzzySearchBook(String title) throws ConnectionAlreadyClosedException;
+
+    public List<String> getFuzzySearchCity(String name) throws ConnectionAlreadyClosedException;
 }
