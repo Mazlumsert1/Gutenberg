@@ -45,7 +45,7 @@ public class RestAssuredMySQLIT {
     @BeforeClass
     public static void setUpClass() {
     }
-
+/*
     @Test
     public void testConnectionOpen() {
         given()
@@ -104,5 +104,5 @@ public class RestAssuredMySQLIT {
         assertThat(books.get(0).getLocations(), hasSize(equalTo(0)));
         assertThat(books.get(0).getText(), equalTo("5.txt"));
     }
-
+*/
 }

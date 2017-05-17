@@ -92,6 +92,12 @@ public class MySQLAPI {
         return Response.status(Response.Status.OK).entity(gson.toJson(books)).build();
     }
 
+    /**
+     * Enables fuzzy searching of authors.
+     *
+     * @param author String the partial name of an author.
+     * @return Response object with Page JSON data.
+     */
     @GET
     @Path("fuzzyauthor/{author}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -109,6 +115,12 @@ public class MySQLAPI {
 
     }
 
+    /**
+     * Enables fuzzy searching of cities.
+     *
+     * @param city String the partial name of a city.
+     * @return Response object with Page JSON data.
+     */
     @GET
     @Path("fuzzycity/{city}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -125,16 +137,22 @@ public class MySQLAPI {
         return Response.status(Response.Status.OK).entity(gson.toJson(page)).build();
     }
 
+    /**
+     * Enables fuzzy searching of books.
+     *
+     * @param book String The partial name of a book.
+     * @return Response object with Page JSON data.
+     */
     @GET
     @Path("fuzzybook/{book}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFuzzySearchBook(@PathParam("book") String book) throws SQLException, BookNotFoundException, ClassNotFoundException {
+    public Response getFuzzySearchBook(@PathParam("book") String book) {
 
         Page page;
         try {
             page = new Page("Book", facade.getFuzzySearchBook(book));
-        } catch (ConnectionAlreadyClosedException e) {
+        } catch (ConnectionAlreadyClosedException | SQLException | ClassNotFoundException | BookNotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(e).build();
         }
 

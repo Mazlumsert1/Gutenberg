@@ -119,16 +119,37 @@ public class BookDAOMongo implements IBookDAO {
         return null;
     }
 
+    /**
+     * Unused.
+     *
+     * @param name
+     * @return
+     * @throws ConnectionAlreadyClosedException
+     */
     @Override
     public List<String> getFuzzySearchAuthor(String name) throws ConnectionAlreadyClosedException {
         return null;
     }
 
+    /**
+     * Unused.
+     *
+     * @param title
+     * @return
+     * @throws ConnectionAlreadyClosedException
+     */
     @Override
     public List<String> getFuzzySearchBook(String title) throws ConnectionAlreadyClosedException {
         return null;
     }
 
+    /**
+     * Unused.
+     *
+     * @param name
+     * @return
+     * @throws ConnectionAlreadyClosedException
+     */
     @Override
     public List<String> getFuzzySearchCity(String name) throws ConnectionAlreadyClosedException {
         return null;
