@@ -90,6 +90,14 @@ public class BookFacade implements IBookFacade
         return books;
     }
 
+    /**
+     * Gets a list of city names for fuzzy searching.
+     *
+     * @param name String The partial name of a city.
+     * @return List<String> A list of Strings for City names.
+     * @throws ConnectionAlreadyClosedException
+     * @throws BookNotFoundException
+     */
     @Override
     public List<String> getFuzzySearchCity(String name) throws ConnectionAlreadyClosedException, BookNotFoundException {
         List<String> cities = dao.getFuzzySearchCity(name);
@@ -99,6 +107,16 @@ public class BookFacade implements IBookFacade
         return cities;
     }
 
+    /**
+     *  Gets a list of book names for fuzzy searching.
+     *
+     * @param title String The partial title of a book.
+     * @return List<String> A list of Strings for Book titles.
+     * @throws BookNotFoundException
+     * @throws ConnectionAlreadyClosedException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public List<String> getFuzzySearchBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException {
         List<String> books = dao.getFuzzySearchBook(title);
@@ -108,6 +126,14 @@ public class BookFacade implements IBookFacade
         return books;
     }
 
+    /**
+     * Gets a list of author names for fuzzy searching.
+     *
+     * @param name String The partial name of an author.
+     * @return List<String> A list of Strings for Author names.
+     * @throws BookNotFoundException
+     * @throws ConnectionAlreadyClosedException
+     */
     @Override
     public List<String> getFuzzySearchAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException {
         List<String> authors = dao.getFuzzySearchAuthor(name);

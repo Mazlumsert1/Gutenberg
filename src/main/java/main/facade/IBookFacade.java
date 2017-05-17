@@ -56,10 +56,10 @@ public interface IBookFacade {
     public List<String> getFuzzySearchAuthor(String name) throws BookNotFoundException, ConnectionAlreadyClosedException;
 
     /**
-     * Enables
+     * Enables fuzzy searching of books. Returns a list of Strings with book titles.
      *
-     * @param title String The partial name of a book.
-     * @return List<String> A collection of String titles of books.
+     * @param title String The partial title of a book.
+     * @return List<String> A collection of String names of books.
      * @throws BookNotFoundException
      * @throws ConnectionAlreadyClosedException
      * @throws SQLException
@@ -68,10 +68,10 @@ public interface IBookFacade {
     public List<String> getFuzzySearchBook(String title) throws BookNotFoundException, ConnectionAlreadyClosedException, SQLException, ClassNotFoundException;
 
     /**
+     * Enables fuzzy searching of cities. Returns a list of Strings with city names.
      *
-     *
-     * @param name
-     * @return
+     * @param name String The partial name of a city.
+     * @return List<String> A collection of String titles of cities.
      * @throws ConnectionAlreadyClosedException
      * @throws BookNotFoundException
      */

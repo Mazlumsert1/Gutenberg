@@ -273,6 +273,13 @@ public class BookDAOMySQL implements IBookDAO {
         return books;
 	}
 
+	/**
+	 * Returns a list of Author names for fuzzy searching.
+	 *
+	 * @param name String partial name of an author.
+	 * @return List<String> List of String names of authors.
+	 * @throws ConnectionAlreadyClosedException
+	 */
 	@Override
 	public List<String> getFuzzySearchAuthor(String name) throws ConnectionAlreadyClosedException {
 		List<String> authors = new ArrayList<>();
@@ -313,6 +320,13 @@ public class BookDAOMySQL implements IBookDAO {
 		return authors;
 	}
 
+	/**
+	 * Gets a list of Book titles for fuzzy searching.
+	 *
+	 * @param title String partial title of a book.
+	 * @return List<String> List of String book titles.
+	 * @throws ConnectionAlreadyClosedException
+	 */
 	@Override
 	public List<String> getFuzzySearchBook(String title) throws ConnectionAlreadyClosedException {
 		List<String> books = new ArrayList<>();
@@ -350,6 +364,13 @@ public class BookDAOMySQL implements IBookDAO {
 		return books;
 	}
 
+	/**
+	 * Gets a list of City names from a partial name.
+	 *
+	 * @param name String partial name of a city.
+	 * @return List<String> List of String names of cities.
+	 * @throws ConnectionAlreadyClosedException
+	 */
 	@Override
 	public List<String> getFuzzySearchCity(String name) throws ConnectionAlreadyClosedException {
 		List<String> cities = new ArrayList<>();
