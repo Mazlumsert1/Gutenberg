@@ -29,7 +29,7 @@ public class DBConnectorMongo implements IDBConnectorMongo {
      *
      * @param uri String to the mongoDB.
      * @param user String username to log in with.
-     * @param password String passqord to log in with.
+     * @param password String password to log in with.
      * @param database String the database to connect to.
      */
     public DBConnectorMongo(String uri, String user, String password, String database) {

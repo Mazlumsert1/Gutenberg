@@ -58,7 +58,7 @@
             <name>Ebbe Vig Nielsen</name>
         </developer>
         <developer>
-            <name>Nikolai Vikkelsø Bonderup</name>
+            <name>Nicolai Vikkelsø Bonderup</name>
         </developer>
         <developer>
             <name>Rune Vandall Zimsen</name>
@@ -116,6 +116,16 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.bundles</groupId>
+            <artifactId>jaxrs-ri</artifactId>
+            <version>2.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
     
