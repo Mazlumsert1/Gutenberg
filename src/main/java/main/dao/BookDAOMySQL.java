@@ -35,8 +35,9 @@ public class BookDAOMySQL implements IBookDAO {
 	/**
 	 * Returns a List of books from the MYSQL database which have the location of a latitude and longitude mentioned.
 	 *
-	 * @param latitude  String the latitude of the location.
-	 * @param longitude String the longitude of the location.
+	 * @param latitude  Double the latitude of the location.
+	 * @param longitude Double the longitude of the location.
+	 * @param radius Int The radius the locations are found from.
 	 * @return List of books The list of books where the location is mentioned.
 	 */
 	@Override
