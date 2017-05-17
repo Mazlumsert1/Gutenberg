@@ -34,8 +34,8 @@ import main.facade.IBookFacade;
  *
  * @author Private
  */
-@Path("mysql")
-public class MySQLAPI {
+@Path("mongo")
+public class MongoAPI {
 
     Gson gson;
     IBookDAO dao;
@@ -45,9 +45,9 @@ public class MySQLAPI {
     private UriInfo context;
 
     /**
-     * Creates a new instance of MySQLAPI
+     * Creates a new instance of MongoAPI
      */
-    public MySQLAPI() {
+    public MongoAPI() {
         gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
