@@ -35,6 +35,7 @@ public class BookDAOMongo implements IBookDAO {
      *
      * @param latitude String The latitude of the location.
      * @param longitude String The longitude of the location.
+     * @param radius The radius where locations are searched.
      * @return List of books The list of books where the location is mentioned.
      */
     @Override
