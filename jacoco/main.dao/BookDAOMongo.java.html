@@ -35,44 +35,45 @@ public class BookDAOMongo implements IBookDAO {
      *
      * @param latitude String The latitude of the location.
      * @param longitude String The longitude of the location.
+     * @param radius The radius where locations are searched.
      * @return List of books The list of books where the location is mentioned.
      */
     @Override
-    public List&lt;Book&gt; getBooksFromLatLong(String latitude, String longitude) {
-<span class="nc" id="L42">        return null;</span>
+    public List&lt;Book&gt; getBooksFromLatLong(double latitude, double longitude, int radius) {
+<span class="nc" id="L43">        return null;</span>
     }
 
     /**
      * Returns a List of books from the Mongo database which is written by the author.
      *
-     * @param author Author The author who has written the books.
+     * @param name String The name of the author who has written the books.
      * @return List of books The books which are written by the author.
      */
     @Override
-    public List&lt;Book&gt; getBooksAndCitiesFromAuthor(Author author) {
-<span class="nc" id="L53">        return null;</span>
+    public List&lt;Book&gt; getBooksAndCitiesFromAuthor(String name) {
+<span class="nc" id="L54">        return null;</span>
     }
 
     /**
      * Returns a List of books from the Mongo database where the cities mentioned in a Book is mentioned.
      *
-     * @param book Book The book where locations are searched.
+     * @param title String The title of the book where locations are searched.
      * @return List of books with locations.
      */
     @Override
-    public List&lt;Book&gt; getCitiesFromBook(Book book) {
-<span class="nc" id="L64">        return null;</span>
+    public List&lt;Location&gt; getCitiesFromBook(String title) {
+<span class="nc" id="L65">        return null;</span>
     }
 
     /**
      * Returns a List of books from the Mongo database which has a location mentioned somewhere in the book.
      *
-     * @param location Location The location that is mentioned in the books.
+     * @param name String The name of the location that is mentioned in the books.
      * @return List of books The books where the location is mentioned.
      */
     @Override
-    public List&lt;Book&gt; getAuthorsAndBooksFromCity(Location location) {
-<span class="nc" id="L75">        return null;</span>
+    public List&lt;Book&gt; getAuthorsAndBooksFromCity(String name) {
+<span class="nc" id="L76">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
