@@ -1,6 +1,7 @@
 package main.util;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
@@ -49,7 +50,7 @@ public class DBConnectorMongo implements IDBConnectorMongo {
         MongoCredential credential = MongoCredential.createCredential(user, database, password.toCharArray());
         // Removed the credentials as we have remove login temporarily.
         //MongoClient mongoClient = new MongoClient(new ServerAddress(uri), Arrays.asList(credential));
-        MongoClient mongoClient = new MongoClient(new ServerAddress(uri));
+        MongoClient mongoClient = new MongoClient(new MongoClientURI(uri));
         MongoDatabase db = mongoClient.getDatabase(database);
 
         return db;

@@ -173,13 +173,13 @@ public class RestAssuredMongo {
                 .contentType(JSON)
                 .statusCode(200)
                 .extract().response();
-        /*
+
         String jsonString = response.asString();
 
         List<Book> books = gson.fromJson(jsonString, new TypeToken<List<Book>>() {
         }.getType());
 
-        assertThat(books, hasSize(greaterThan(0)));*/
+        assertThat(books, hasSize(greaterThan(0)));
     }
 
     @Test(expected = AssertionError.class)
@@ -191,12 +191,12 @@ public class RestAssuredMongo {
                 .contentType(JSON)
                 .statusCode(200)
                 .extract().response();
-        /*
+
         String jsonString = response.asString();
 
         List<Book> books = gson.fromJson(jsonString, new TypeToken<List<Book>>() {
         }.getType());
 
-        assertThat(books, hasSize(equalTo(0)));*/
+        assertThat(books, hasSize(equalTo(0)));
     }
 }
