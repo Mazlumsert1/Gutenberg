@@ -29,6 +29,7 @@ public class BookDAOMongoTest {
 
     BookDAOMongo dao;
 
+
     @Test
     public void successfulGetLocationsFromBookTest() throws ConnectionAlreadyClosedException {
         BookDAOMongo dao = mock(BookDAOMongo.class);

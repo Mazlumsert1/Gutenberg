@@ -43,4 +43,15 @@ public class BookDAOMongoIT {
         assertThat(cities, is(notNullValue()));
 
     }
+
+    @Test
+    public void unsuccessfulGetCitiesFromBookTest() {
+        DBConnectorMongo connector = new DBConnectorMongo();
+        dao = new BookDAOMongo(connector);
+
+        List<Location> cities = dao.getCitiesFromBook("BoogerButt Anthology, Book III");
+
+        assertThat(cities, is(notNullValue()));
+
+    }
 }

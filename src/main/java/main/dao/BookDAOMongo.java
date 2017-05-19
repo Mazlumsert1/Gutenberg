@@ -57,7 +57,7 @@ public class BookDAOMongo implements IBookDAO {
      */
     @Override
     public List<Book> getBooksFromLatLong(double latitude, double longitude, int radius) {
-        return null;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     /**
