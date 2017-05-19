@@ -20,5 +20,5 @@ ToFind the answer for the Testing course click ![here]()
 
 ____________________________________________________________
 
-The Project consists of a server at digital ocean with a SQL and MongoDB, the back end code have been made in Java, frontend in Angular 4.
+The Project consists of a server at digital ocean with a SQL and MongoDB, the backend code have been made in Java, frontend in Angular 4.
 
