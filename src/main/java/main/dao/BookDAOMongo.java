@@ -1,10 +1,23 @@
 package main.dao;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
+import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMongo;
 
+import static com.mongodb.client.model.Filters.*;
+
+
+import org.bson.Document;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,12 +26,16 @@ import java.util.List;
 public class BookDAOMongo implements IBookDAO {
 
     DBConnectorMongo connector;
+    MongoCollection<Document> collection;
+    MongoDatabase db;
+
 
     /**
      * Default Constructor.
      */
     public BookDAOMongo() {
         connector = new DBConnectorMongo();
+        db = connector.getConnection();
     }
 
     /**
@@ -33,9 +50,9 @@ public class BookDAOMongo implements IBookDAO {
     /**
      * Returns a List of books from the Mongo database which have the location of a latitude and longitude mentioned.
      *
-     * @param latitude String The latitude of the location.
+     * @param latitude  String The latitude of the location.
      * @param longitude String The longitude of the location.
-     * @param radius The radius where locations are searched.
+     * @param radius    The radius where locations are searched.
      * @return List of books The list of books where the location is mentioned.
      */
     @Override
@@ -51,7 +68,17 @@ public class BookDAOMongo implements IBookDAO {
      */
     @Override
     public List<Book> getBooksAndCitiesFromAuthor(String name) {
-        return null;
+
+        collection = db.getCollection("books");
+
+        List<Book> books = new ArrayList<>();
+
+        for (Document dbObject : collection.find(eq("author", new Document("$elemMatch", new Document("name", name))))) {
+
+            books.add(new Book((int) dbObject.get("UID"), (String) dbObject.get("title"), (List<Author>) dbObject.get("authors"), (List<Location>) dbObject.get("locations"), (String) dbObject.get("text")));
+        }
+
+        return books;
     }
 
     /**
@@ -62,7 +89,28 @@ public class BookDAOMongo implements IBookDAO {
      */
     @Override
     public List<Location> getCitiesFromBook(String title) {
-        return null;
+
+        collection = db.getCollection("books");
+
+        List<Document> books = (List<Document>) collection.find(eq("title", title)).into(new ArrayList<Document>());
+        List<Location> cities = new ArrayList<>();
+
+        for (Document book : books) {
+
+            List<Document> locations = (List<Document>) book.get("locations");
+            for (Document loc : locations) {
+                int id = (int) loc.get("UID");
+                if (loc.get("latitude") instanceof String) {
+                    String latitude = (String) loc.get("latitude");
+                    String longitude = (String) loc.get("longitude");
+                    cities.add(new Location(Long.parseLong("" + id), Double.parseDouble(latitude), Double.parseDouble(longitude), (String) loc.get("name")));
+                } else {
+                    cities.add(new Location(Long.parseLong("" + id), (double) loc.get("latitude"), (double) loc.get("longitude"), (String) loc.get("name")));
+                }
+            }
+        }
+
+        return cities;
     }
 
     /**
@@ -75,4 +123,5 @@ public class BookDAOMongo implements IBookDAO {
     public List<Book> getAuthorsAndBooksFromCity(String name) {
         return null;
     }
+
 }

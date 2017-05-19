@@ -31,7 +31,7 @@ import java.util.List;
  *
  * @author Private
  */
-public class RestAssuredMySQLIT {
+public class RestAssuredMySQL {
 
     Response response;
     Gson gson= new GsonBuilder()
@@ -39,7 +39,7 @@ public class RestAssuredMySQLIT {
             .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
             .create();
 
-    public RestAssuredMySQLIT() {
+    public RestAssuredMySQL() {
     }
 
     @BeforeClass

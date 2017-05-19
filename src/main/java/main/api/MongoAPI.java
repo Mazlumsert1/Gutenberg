@@ -21,7 +21,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import main.dao.BookDAOMySQL;
+
+import main.dao.BookDAOMongo;
 import main.dao.IBookDAO;
 import main.dto.Book;
 import main.dto.Location;
@@ -41,9 +42,6 @@ public class MongoAPI {
     IBookDAO dao;
     IBookFacade facade;
 
-    @Context
-    private UriInfo context;
-
     /**
      * Creates a new instance of MongoAPI
      */
@@ -52,7 +50,7 @@ public class MongoAPI {
                 .setPrettyPrinting()
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
                 .create();
-        dao = new BookDAOMySQL();
+        dao = new BookDAOMongo();
         facade = new BookFacade(dao);
     }
 
@@ -102,7 +100,7 @@ public class MongoAPI {
     @Path("fromauthor/{auth}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response booksAndCitiesFromAuthor(@PathParam("auth") String author) {
+    public Response booksAndCitiesFromAuthorMongo(@PathParam("auth") String author) {
 
         List<Book> books;
         try {

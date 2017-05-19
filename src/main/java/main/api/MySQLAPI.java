@@ -12,12 +12,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -34,15 +30,13 @@ import main.facade.IBookFacade;
  *
  * @author Private
  */
-@Path("mysql")
+@Path("/mysql")
 public class MySQLAPI {
 
     Gson gson;
     IBookDAO dao;
     IBookFacade facade;
 
-    @Context
-    private UriInfo context;
 
     /**
      * Creates a new instance of MySQLAPI
@@ -102,7 +96,7 @@ public class MySQLAPI {
     @Path("fromauthor/{auth}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response booksAndCitiesFromAuthor(@PathParam("auth") String author) {
+    public Response booksAndCitiesFromAuthorMySQL(@PathParam("auth") String author) {
 
         List<Book> books;
         try {
