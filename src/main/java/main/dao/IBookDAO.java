@@ -3,6 +3,7 @@ package main.dao;
 import main.dto.Author;
 import main.dto.Book;
 import main.dto.Location;
+import main.exception.BookNotFoundException;
 import main.exception.ConnectionAlreadyClosedException;
 
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public interface IBookDAO {
      * @param name String The name of the author.
      * @return List of books The books the author has written.
      */
-    public List<Book> getBooksAndCitiesFromAuthor(String name) throws ConnectionAlreadyClosedException;
+    public List<Book> getBooksAndCitiesFromAuthor(String name) throws ConnectionAlreadyClosedException, BookNotFoundException;
 
     /**
      * Returns a List of books where cities mentioned in a book is in.

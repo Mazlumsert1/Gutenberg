@@ -3,6 +3,7 @@ package test.dao;
 import main.dao.BookDAOMySQL;
 import main.dto.Book;
 import main.dto.Location;
+import main.exception.BookNotFoundException;
 import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMySQL;
 import org.junit.Test;
@@ -62,7 +63,7 @@ public class BookDAOMySQLTest {
 	}
 
 	@Test
-    public void successfulGetBooksAndCitiesFromAuthorTest() throws ConnectionAlreadyClosedException {
+    public void successfulGetBooksAndCitiesFromAuthorTest() throws ConnectionAlreadyClosedException, BookNotFoundException {
 	    List<Book> books = new ArrayList<>();
 
 	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
@@ -73,7 +74,7 @@ public class BookDAOMySQLTest {
     }
 
     @Test
-    public void failedGetBooksAndCitiesFromAuthorTest() throws ConnectionAlreadyClosedException {
+    public void failedGetBooksAndCitiesFromAuthorTest() throws ConnectionAlreadyClosedException, BookNotFoundException {
 	    BookDAOMySQL dao = mock(BookDAOMySQL.class);
 	    when(dao.getBooksAndCitiesFromAuthor(anyString())).
                 thenReturn(null);
