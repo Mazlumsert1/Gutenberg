@@ -1,8 +1,10 @@
 package test.dao;
 
-import main.dao.BookDAOMongo;
+import main.dao.BookDAOMySQL;
 import main.dto.Book;
 import main.dto.Location;
+import main.exception.BookNotFoundException;
+import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMongo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,28 +22,27 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BookDAOMongoIT {
+public class BookDAOMySQLIT {
 
-    BookDAOMongo dao;
+    BookDAOMySQL dao;
 
     @Test
     public void defaultConstructorTest() {
-        dao = new BookDAOMongo();
+        dao = new BookDAOMySQL();
 
         assertThat(dao, is(notNullValue()));
     }
 
     @Test
     public void dependencyConstructorTest() {
-        DBConnectorMongo connector = new DBConnectorMongo();
-        dao = new BookDAOMongo(connector);
+        dao = new BookDAOMySQL();
 
         assertThat(dao, is(notNullValue()));
     }
 
     @Test
-    public void successfulGetCitiesFromBookTest() {
-        dao = new BookDAOMongo();
+    public void successfulGetCitiesFromBookTest() throws ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Location> cities = dao.getCitiesFromBook("Ivanhoe");
 
@@ -50,8 +51,8 @@ public class BookDAOMongoIT {
     }
 
     @Test
-    public void unsuccessfulGetCitiesFromBookTest() {
-        dao = new BookDAOMongo();
+    public void unsuccessfulGetCitiesFromBookTest() throws ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Location> cities = dao.getCitiesFromBook("BoogerButt Anthology, Book III");
 
@@ -60,8 +61,8 @@ public class BookDAOMongoIT {
     }
 
     @Test
-    public void successfulGetAuthorsAndBooksFromCity() {
-        dao = new BookDAOMongo();
+    public void successfulGetAuthorsAndBooksFromCity() throws ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Book> books = dao.getAuthorsAndBooksFromCity("Washington");
 
@@ -69,8 +70,8 @@ public class BookDAOMongoIT {
     }
 
     @Test
-    public void unsuccessfulGetAuthorsAndBooksFromCity() {
-        dao = new BookDAOMongo();
+    public void unsuccessfulGetAuthorsAndBooksFromCity() throws ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Book> books = dao.getAuthorsAndBooksFromCity("New Donk City");
 
@@ -78,8 +79,8 @@ public class BookDAOMongoIT {
     }
 
     @Test
-    public void successfulGetBooksAndCitiesFromAuthor() {
-        dao = new BookDAOMongo();
+    public void successfulGetBooksAndCitiesFromAuthor() throws BookNotFoundException, ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Book> books = dao.getBooksAndCitiesFromAuthor("Edith Wharton");
 
@@ -87,26 +88,26 @@ public class BookDAOMongoIT {
     }
 
     @Test
-    public void unsuccessfulGetBooksAndCitiesFromAuthor() {
-        dao = new BookDAOMongo();
+    public void unsuccessfulGetBooksAndCitiesFromAuthor() throws BookNotFoundException, ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Book> books = dao.getBooksAndCitiesFromAuthor("Slab PlunkChunk");
 
         assertThat(books, hasSize(equalTo(0)));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void successfulGetBooksFromLatLong() {
-        dao = new BookDAOMongo();
+    @Test
+    public void successfulGetBooksFromLatLong() throws ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Book> books = dao.getBooksFromLatLong(52.18935,-2.22001,50);
 
         assertThat(books, hasSize(greaterThan(0)));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void unsuccessfulGetBooksFromLatLong() {
-        dao = new BookDAOMongo();
+    @Test
+    public void unsuccessfulGetBooksFromLatLong() throws ConnectionAlreadyClosedException {
+        dao = new BookDAOMySQL();
 
         List<Book> books = dao.getBooksFromLatLong(420420.0,-696969.0,666);
 
