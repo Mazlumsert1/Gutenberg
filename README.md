@@ -14,9 +14,11 @@ The project have been Created by
 - Nicolai Bonnerup 
 - EbbE V. Nielsen.
 
-To Find the answer for the Database course click ![here]()
+The assignment for the database course project can be found [here](https://github.com/HelgeCPH/db_course_nosql/blob/master/lecture_notes/Project%20Description.ipynb)
+To Find the answer for the Database course click [here]()
 
-ToFind the answer for the Testing course click ![here]()
+The assignment for testing course project cane be found [here](Semester project Testing.md)
+To Find the answer for the Testing course click [here]()
 
 ____________________________________________________________
 
