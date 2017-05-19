@@ -47,7 +47,7 @@ public class DBConnectorMongo implements IDBConnectorMongo {
      */
     @Override
     public MongoDatabase getConnection() {
-        MongoCredential credential = MongoCredential.createCredential(user, database, password.toCharArray());
+        //MongoCredential credential = MongoCredential.createCredential(user, database, password.toCharArray());
         // Removed the credentials as we have remove login temporarily.
         //MongoClient mongoClient = new MongoClient(new ServerAddress(uri), Arrays.asList(credential));
         MongoClient mongoClient = new MongoClient(new MongoClientURI(uri));
