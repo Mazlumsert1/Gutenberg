@@ -25,7 +25,7 @@ ____________________________________________________________
 The Project consists of a server at digital ocean with a SQL and MongoDB, the backend code have been made in Java, frontend in Angular 4.
 
 We have used CI with the project [Travis-CI.com](https://travis-ci.org/ERPedersen/Gutenberg) .
-To see the maven output see [here](https://erpedersen.github.io/Gutenberg/)
+To see the maven output see with full java documentation click [here](https://erpedersen.github.io/Gutenberg/) 
 
 The Frontend part can be found [here](https://github.com/ERPedersen/Gutenbergweb)
 
