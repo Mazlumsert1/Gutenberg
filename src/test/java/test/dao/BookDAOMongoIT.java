@@ -43,7 +43,7 @@ public class BookDAOMongoIT {
     public void successfulGetCitiesFromBookTest() {
         dao = new BookDAOMongo();
 
-        List<Location> cities = dao.getCitiesFromBook("Ivanhoe");
+        List<Location> cities = dao.getCitiesFromBook("The Truce of God");
 
         assertThat(cities, hasSize(greaterThan(0)));
 
@@ -81,7 +81,7 @@ public class BookDAOMongoIT {
     public void successfulGetBooksAndCitiesFromAuthor() {
         dao = new BookDAOMongo();
 
-        List<Book> books = dao.getBooksAndCitiesFromAuthor("Edith Wharton");
+        List<Book> books = dao.getBooksAndCitiesFromAuthor("Thomas Clarkson");
 
         assertThat(books, hasSize(greaterThan(0)));
     }

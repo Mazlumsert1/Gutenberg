@@ -44,7 +44,7 @@ public class BookDAOMySQLIT {
     public void successfulGetCitiesFromBookTest() throws ConnectionAlreadyClosedException {
         dao = new BookDAOMySQL();
 
-        List<Location> cities = dao.getCitiesFromBook("Ivanhoe");
+        List<Location> cities = dao.getCitiesFromBook("What Peace Means");
 
         assertThat(cities, hasSize(greaterThan(0)));
 
@@ -82,7 +82,7 @@ public class BookDAOMySQLIT {
     public void successfulGetBooksAndCitiesFromAuthor() throws BookNotFoundException, ConnectionAlreadyClosedException {
         dao = new BookDAOMySQL();
 
-        List<Book> books = dao.getBooksAndCitiesFromAuthor("Edith Wharton");
+        List<Book> books = dao.getBooksAndCitiesFromAuthor("Thomas Clarkson");
 
         assertThat(books, hasSize(greaterThan(0)));
     }

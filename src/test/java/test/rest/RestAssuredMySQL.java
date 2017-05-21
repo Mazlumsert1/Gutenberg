@@ -62,7 +62,7 @@ public class RestAssuredMySQL {
 
         response = given()
                 .when()
-                .get("http://localhost:8080/api/mysql/frombook/Ivanhoe")
+                .get("http://localhost:8080/api/mysql/frombook/What Peace Means")
                 .then()
                 .statusCode(200)
                 .extract().response();
@@ -74,10 +74,10 @@ public class RestAssuredMySQL {
 
         assertThat(cities, hasSize(greaterThan(0)));
 
-        assertThat(cities.get(0).getName(), equalTo("Damascus"));
-        assertThat(cities.get(0).getUID(), equalTo(170654L));
-        assertThat(cities.get(0).getLatitude(), equalTo(33.5102));
-        assertThat(cities.get(0).getLongitude(), equalTo(36.29128));
+        assertThat(cities.get(0).getName(), equalTo("Same"));
+        assertThat(cities.get(0).getUID(), equalTo(150276L));
+        assertThat(cities.get(0).getLatitude(), equalTo(-4.06667));
+        assertThat(cities.get(0).getLongitude(), equalTo(37.73333));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class RestAssuredMySQL {
 
         response = given()
                 .when()
-                .get("http://localhost:8080/api/mysql/fromcity/Washington")
+                .get("http://localhost:8080/api/mysql/fromcity/Copenhagen")
                 .then()
                 .contentType(JSON)
                 .statusCode(200)
@@ -119,13 +119,13 @@ public class RestAssuredMySQL {
 
         List<Author> authors = books.get(0).getAuthors();
 
-        assertThat(books.get(0).getTitle(), equalTo("The United States' Constitution"));
-        assertThat(books.get(0).getUID(), equalTo(5L));
+        assertThat(books.get(0).getTitle(), equalTo("Drake, Nelson and Napoleon"));
+        assertThat(books.get(0).getUID(), equalTo(15299L));
         assertThat(books.get(0).getAuthors(), hasSize(1));
-        assertThat(authors.get(0).getName(), equalTo(" Founding Fathers"));
-        assertThat(authors.get(0).getUID(), equalTo(157L));
+        assertThat(authors.get(0).getName(), equalTo("Walter Runciman"));
+        assertThat(authors.get(0).getUID(), equalTo(26L));
         assertThat(books.get(0).getLocations(), hasSize(equalTo(0)));
-        assertThat(books.get(0).getText(), equalTo("5.txt"));
+        assertThat(books.get(0).getText(), equalTo("15299.txt"));
     }
 
     @Test

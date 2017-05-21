@@ -53,7 +53,7 @@ public class RestAssuredMongo {
 
         response = given()
                 .when()
-                .get("http://localhost:8080/api/mongo/frombook/Ivanhoe")
+                .get("http://localhost:8080/api/mongo/frombook/The Truce of God")
                 .then()
                 .statusCode(200)
                 .extract().response();
@@ -90,7 +90,7 @@ public class RestAssuredMongo {
 
         response = given()
                 .when()
-                .get("http://localhost:8080/api/mongo/fromcity/Washington")
+                .get("http://localhost:8080/api/mongo/fromcity/Copenhagen")
                 .then()
                 .contentType(JSON)
                 .statusCode(200)
@@ -131,7 +131,7 @@ public class RestAssuredMongo {
 
         response = given()
                 .when()
-                .get("http://localhost:8080/api/mongo/fromauthor/Edith Wharton")
+                .get("http://localhost:8080/api/mongo/fromauthor/Thomas Clarkson")
                 .then()
                 .contentType(JSON)
                 .statusCode(200)
