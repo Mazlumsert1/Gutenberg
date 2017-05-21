@@ -86,7 +86,7 @@ public class MongoAPI {
             return Response.status(Response.Status.NOT_FOUND).entity(ex).build();
         }
 
-        return Response.status(Response.Status.OK).entity(gson.toJson(books)).build();
+        return Response.status(Response.Status.OK).entity("{ \"data\":" + gson.toJson(books) + "}").build();
     }
 
     /**
@@ -109,7 +109,7 @@ public class MongoAPI {
             return Response.status(Response.Status.NOT_FOUND).entity(ex).build();
         }
 
-        return Response.status(Response.Status.OK).entity(gson.toJson(books)).build();
+        return Response.status(Response.Status.OK).entity("{ \"data\":" + gson.toJson(books) + "}").build();
     }
 
     /**
@@ -130,7 +130,7 @@ public class MongoAPI {
             return Response.status(Response.Status.NOT_FOUND).entity(ex).build();
         }
 
-        return Response.status(Response.Status.OK).entity(gson.toJson(cities)).build();
+        return Response.status(Response.Status.OK).entity("{ \"data\":" + gson.toJson(cities) + "}").build();
     }
 
     /**
@@ -151,7 +151,7 @@ public class MongoAPI {
             return Response.status(Response.Status.NOT_FOUND).entity(ex).build();
         }
 
-        return Response.status(Response.Status.OK).entity(gson.toJson(books)).build();
+        return Response.status(Response.Status.OK).entity("{ \"data\":" + gson.toJson(books) + "}").build();
     }
 
 }

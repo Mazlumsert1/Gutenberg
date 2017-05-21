@@ -3,16 +3,11 @@ package main.dao;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import main.dto.Author;
 import main.dto.Book;
-import main.dto.Coordinates;
 import main.dto.Location;
-import main.exception.ConnectionAlreadyClosedException;
 import main.util.DBConnectorMongo;
 
 import static com.mongodb.client.model.Filters.*;
@@ -21,7 +16,6 @@ import static com.mongodb.client.model.Filters.*;
 import org.bson.Document;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
